@@ -19,8 +19,8 @@
         android:maxSdkVersion="28" />
 
     <queries>
-        <package android:name="org.lineageos.aperture.auto_generated_rro_product__" />
-        <package android:name="org.lineageos.aperture.auto_generated_rro_vendor__" />
+        <package android:name="com.android.camera2.auto_generated_rro_product__" />
+        <package android:name="com.android.camera2.auto_generated_rro_vendor__" />
     </queries>
 
     <application
@@ -54,7 +54,7 @@
         </activity>
 
         <activity-alias
-            android:name=".CameraLauncher"
+            android:name="com.android.camera.CameraLauncher"
             android:exported="true"
             android:label="@string/app_name"
             android:targetActivity=".CameraActivity">
