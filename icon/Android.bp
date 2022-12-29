@@ -1,0 +1,32 @@
+//
+// Copyright (C) 2013 Google Inc.
+//
+
+package {
+    // See: http://go/android-license-faq
+    default_applicable_licenses: [
+        "Android-Apache-2.0",
+    ],
+}
+
+android_app {
+    name: "Camera2Icon",
+    
+    srcs: ["src/**/*.kt"],
+
+    sdk_version: "current",
+    product_specific: true,
+
+    aaptflags: [
+        "--version-name",
+        "2.0.003",
+        "--version-code",
+        "20003000",
+    ],
+
+    overrides: ["Camera2"],
+
+    optimize: {
+        proguard_flags_files: ["proguard-rules.pro"],
+    },
+}
