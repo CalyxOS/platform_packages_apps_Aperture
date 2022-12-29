@@ -19,6 +19,11 @@ android_app {
     sdk_version: "33",
     product_specific: true,
 
+    aaptflags: [
+        "--rename-manifest-package",
+        "com.android.camera2",
+    ],
+
     static_libs: [
         // DO NOT EDIT THIS SECTION MANUALLY
         "androidx.core_core-ktx",
