@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48d1dff_6a0b4d68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-29T23:39:50Z",
+      "side": 1,
+      "message": "Upstream (Click on Change-Id: \"Lineage\")",
+      "revId": "732b834ad6b4e9eb2018166d14915ba1a0898d6b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
