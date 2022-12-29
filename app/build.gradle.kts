@@ -18,7 +18,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.lineageos.aperture"
+        applicationId = "org.calyxos.aperture"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
