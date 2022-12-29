@@ -32,8 +32,8 @@ class OverlaysRepository(private val context: Context) {
     }
 
     private val rroResources = listOf(
-        "org.lineageos.aperture.auto_generated_rro_product__",
-        "org.lineageos.aperture.auto_generated_rro_vendor__",
+        "org.calyxos.aperture.auto_generated_rro_product__",
+        "org.calyxos.aperture.auto_generated_rro_vendor__",
     ).mapNotNull {
         runCatching { RROResources(it) }.getOrNull()
     }

@@ -29,8 +29,8 @@
     <queries>
         <package android:name="com.google.android.apps.googlecamera.fishfood" />
         <package android:name="com.google.android.googlequicksearchbox" />
-        <package android:name="org.lineageos.aperture.auto_generated_rro_product__" />
-        <package android:name="org.lineageos.aperture.auto_generated_rro_vendor__" />
+        <package android:name="org.calyxos.aperture.auto_generated_rro_product__" />
+        <package android:name="org.calyxos.aperture.auto_generated_rro_vendor__" />
     </queries>
 
     <application
