@@ -4,7 +4,7 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <config>
-    <install-in-user-type package="org.lineageos.aperture">
+    <install-in-user-type package="com.android.camera2">
         <install-in user-type="FULL" />
         <install-in user-type="PROFILE" />
         <do-not-install-in user-type="android.os.usertype.profile.CLONE" />
