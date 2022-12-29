@@ -17,7 +17,7 @@ android {
     namespace = "org.lineageos.aperture"
 
     defaultConfig {
-        applicationId = "org.lineageos.aperture"
+        applicationId = "com.android.camera2"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
