@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ef981f1_15c2e1db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-30T23:39:20Z",
+      "side": 1,
+      "message": "`Caused by: java.lang.ClassNotFoundException: Didn\u0027t find class \"com.android.camera.app.CameraApp\" on path: DexPathList[[zip file \"/product/app/Camera2Icon/Camera2Icon.apk\"]`\n\n`apktool d` confirms - there\u0027s no `com.android.camera` in the apk.\n\nI have no idea 😞",
+      "revId": "724d4048ca4cae767bb0246ba6dd108c1b5b99f8",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
