@@ -20,7 +20,7 @@ open class CameraLauncher : Activity() {
         ShortcutsUtils.registerShortcuts(this)
 
         val apertureIntent = Intent()
-            .setComponent(ComponentName("org.lineageos.aperture", "org.lineageos.aperture.CameraActivity"))
+            .setComponent(ComponentName("org.calyxos.aperture", "org.lineageos.aperture.CameraActivity"))
             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(apertureIntent)
         finish()
