@@ -354,9 +354,6 @@ open class CameraActivity : AppCompatActivity() {
             setShowWhenLocked(true)
         }
 
-        // Register shortcuts
-        ShortcutsUtils.registerShortcuts(this)
-
         // Request camera permissions
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
