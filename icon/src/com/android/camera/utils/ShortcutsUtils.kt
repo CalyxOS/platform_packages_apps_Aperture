@@ -27,7 +27,7 @@ object ShortcutsUtils {
                 .setIcon(Icon.createWithResource(context, R.drawable.ic_shortcut_selfie))
                 .setIntent(
                     Intent()
-                        .setComponent(ComponentName("org.lineageos.aperture", "org.lineageos.aperture.CameraActivity"))
+                        .setComponent(ComponentName("org.calyxos.aperture", "org.lineageos.aperture.CameraActivity"))
                         .setAction(SHORTCUT_ID_SELFIE)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 )
@@ -38,7 +38,7 @@ object ShortcutsUtils {
                 .setIcon(Icon.createWithResource(context, R.drawable.ic_shortcut_video))
                 .setIntent(
                     Intent()
-                        .setComponent(ComponentName("org.lineageos.aperture", "org.lineageos.aperture.CameraActivity"))
+                        .setComponent(ComponentName("org.calyxos.aperture", "org.lineageos.aperture.CameraActivity"))
                         .setAction(SHORTCUT_ID_VIDEO)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 )
@@ -49,7 +49,7 @@ object ShortcutsUtils {
                 .setIcon(Icon.createWithResource(context, R.drawable.ic_shortcut_qr))
                 .setIntent(
                     Intent()
-                        .setComponent(ComponentName("org.lineageos.aperture", "org.lineageos.aperture.CameraActivity"))
+                        .setComponent(ComponentName("org.calyxos.aperture", "org.lineageos.aperture.CameraActivity"))
                         .setAction(SHORTCUT_ID_QR)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 )
