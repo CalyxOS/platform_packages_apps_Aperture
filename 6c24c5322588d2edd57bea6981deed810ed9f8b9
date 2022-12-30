@@ -16,6 +16,23 @@
       "message": "Also TODO: Translations",
       "revId": "6c24c5322588d2edd57bea6981deed810ed9f8b9",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7d06118_1b7f7e5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-30T21:18:58Z",
+      "side": 1,
+      "message": "dex2oatd E 12-31 02:47:47   344   344 oat_writer.cc:594] No dex files in zip file \u0027/product/app/Camera2Icon/Camera2Icon.apk\u0027: Entry not found",
+      "revId": "6c24c5322588d2edd57bea6981deed810ed9f8b9",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
