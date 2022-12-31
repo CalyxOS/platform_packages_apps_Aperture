@@ -16,6 +16,23 @@
       "message": "Kinda works now\n\n* It wants `LAUNCHER` activity for Aperture\n* Shortcuts don\u0027t work, can\u0027t find activity.",
       "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f00b27de_550caf13",
+        "filename": "icon/src/com/android/camera/CameraLauncher.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-31T01:04:30Z",
+      "side": 1,
+      "message": "Kinda doesn\u0027t work, see https://review.calyxos.org/c/CalyxOS/platform_packages_apps_Aperture/+/15102/6/app/src/main/AndroidManifest.xml#b65",
+      "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
