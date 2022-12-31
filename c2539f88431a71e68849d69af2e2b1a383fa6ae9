@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a44bce_b2a580d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-31T00:30:48Z",
+      "side": 1,
+      "message": "Build issues fixed but it still won\u0027t launch camera 😞",
+      "revId": "c2539f88431a71e68849d69af2e2b1a383fa6ae9",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
