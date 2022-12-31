@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13043aeb_21637023",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-31T00:44:04Z",
+      "side": 1,
+      "message": "Kinda works now\n\n* It wants `LAUNCHER` activity for Aperture\n* Shortcuts don\u0027t work, can\u0027t find activity.",
+      "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
