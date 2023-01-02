@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98ef084d_83cbe424",
+        "filename": "app/src/main/AndroidManifest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T17:10:04Z",
+      "side": 0,
+      "message": "I hope this removal doesn\u0027t cause any issues. It has been added to Camera2Icon\u0027s manifest instead.",
+      "revId": "9b98905517ca3023e4fca3cd38f0116575caa1e0",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
