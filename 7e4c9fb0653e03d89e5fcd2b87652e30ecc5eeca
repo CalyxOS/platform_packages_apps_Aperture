@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "919fa74d_72bf3a4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T19:12:22Z",
+      "side": 1,
+      "message": "RROs are still named the old way.",
+      "revId": "7e4c9fb0653e03d89e5fcd2b87652e30ecc5eeca",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
