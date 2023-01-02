@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "134a0083_f3565934",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T19:50:41Z",
+      "side": 1,
+      "message": "Works with RROs renamed.",
+      "revId": "f5d84df8b742933cd3058db4558568b85ee0d167",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
