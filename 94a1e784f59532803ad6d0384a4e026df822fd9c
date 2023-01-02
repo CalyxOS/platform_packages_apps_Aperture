@@ -69,6 +69,24 @@
       "parentUuid": "7b4cff0a_9db17fc8",
       "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15cbaa2b_008551ef",
+        "filename": "icon/src/com/android/camera/CameraLauncher.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T17:02:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee562a39_e3f86d85",
+      "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
