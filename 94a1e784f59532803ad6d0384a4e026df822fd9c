@@ -18,6 +18,24 @@
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d437f5c_287ab9ce",
+        "filename": "app/src/main/AndroidManifest.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T17:02:33Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "fac9fb2b_06bf5a79",
+      "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18c4e089_23e9f0bc",
@@ -49,6 +67,24 @@
       "side": 0,
       "message": "```\n--------- beginning of crash\n01-02 22:15:46.641  6334  6334 E AndroidRuntime: FATAL EXCEPTION: main\n01-02 22:15:46.641  6334  6334 E AndroidRuntime: Process: org.calyxos.aperture, PID: 6334\n01-02 22:15:46.641  6334  6334 E AndroidRuntime: java.lang.RuntimeException: Unable to start activity ComponentInfo{org.calyxos.aperture/org.lineageos.aperture.CameraActivity}: java.lang.IllegalStateException: Launcher activity not found for package org.calyxos.aperture\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3645)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:3782)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:101)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:135)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:95)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2307)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Handler.dispatchMessage(Handler.java:106)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Looper.loopOnce(Looper.java:201)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Looper.loop(Looper.java:288)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.ActivityThread.main(ActivityThread.java:7872)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at java.lang.reflect.Method.invoke(Native Method)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:936)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime: Caused by: java.lang.IllegalStateException: Launcher activity not found for package org.calyxos.aperture\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Parcel.createExceptionOrNull(Parcel.java:3019)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Parcel.createException(Parcel.java:2995)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Parcel.readException(Parcel.java:2978)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Parcel.readException(Parcel.java:2920)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.content.pm.IShortcutService$Stub$Proxy.setDynamicShortcuts(IShortcutService.java:598)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.content.pm.ShortcutManager.setDynamicShortcuts(ShortcutManager.java:148)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at org.lineageos.aperture.utils.ShortcutsUtils.registerShortcuts(ShortcutsUtils.kt:26)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at org.lineageos.aperture.CameraActivity.onCreate(CameraActivity.kt:358)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.Activity.performCreate(Activity.java:8305)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.Activity.performCreate(Activity.java:8284)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1421)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3626)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        ... 12 more\n01-02 22:15:46.641  6334  6334 E AndroidRuntime: Caused by: android.os.RemoteException: Remote stack trace:\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at com.android.internal.util.Preconditions.checkState(Preconditions.java:215)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at com.android.server.pm.ShortcutService.fillInDefaultActivity(ShortcutService.java:1918)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at com.android.server.pm.ShortcutService.setDynamicShortcuts(ShortcutService.java:1965)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.content.pm.IShortcutService$Stub.onTransact(IShortcutService.java:267)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:        at android.os.Binder.execTransactInternal(Binder.java:1280)\n01-02 22:15:46.641  6334  6334 E AndroidRuntime:\n```",
       "parentUuid": "18c4e089_23e9f0bc",
+      "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adbc1019_88921fee",
+        "filename": "app/src/main/AndroidManifest.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T17:02:33Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b9766e91_2dd97045",
       "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
