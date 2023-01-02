@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd2e9f69_4cf7b890",
+        "filename": "icon/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T20:52:53Z",
+      "side": 1,
+      "message": "Could also add `requires: [\"Aperture\"],`",
+      "revId": "9b98905517ca3023e4fca3cd38f0116575caa1e0",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
