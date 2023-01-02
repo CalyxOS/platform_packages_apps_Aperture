@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fac9fb2b_06bf5a79",
+        "filename": "app/src/main/AndroidManifest.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-02T16:47:56Z",
+      "side": 0,
+      "message": "Launcher wants this as well otherwise it won\u0027t show up\n\n```\n#Intent;action\u003dandroid.media.action.STILL_IMAGE_CAMERA;end // OR\n#Intent;action\u003dandroid.intent.action.CAMERA_BUTTON;end\n```",
+      "revId": "94a1e784f59532803ad6d0384a4e026df822fd9c",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18c4e089_23e9f0bc",
         "filename": "app/src/main/AndroidManifest.xml",
         "patchSetId": 6
