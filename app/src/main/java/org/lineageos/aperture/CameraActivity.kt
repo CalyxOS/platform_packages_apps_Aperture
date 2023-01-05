@@ -38,6 +38,7 @@ import android.widget.HorizontalScrollView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.camera2.interop.CaptureRequestOptions
 import androidx.camera.core.AspectRatio
@@ -54,7 +55,6 @@ import androidx.camera.view.onPinchToZoom
 import androidx.camera.view.video.AudioConfig
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat.getInsetsController
 import androidx.core.view.WindowInsetsCompat
@@ -270,7 +270,7 @@ open class CameraActivity : AppCompatActivity() {
             // Reset cached location
             location = null
 
-            if (allLocationPermissionsGranted() && sharedPreferences.saveLocation) {
+            if (allLocationPermissionsGranted() && sharedPreferences.saveLocation == true) {
                 // Request location updates
                 locationManager.allProviders.forEach {
                     locationManager.requestLocationUpdates(it, 1000, 1f, this)
@@ -284,6 +284,20 @@ open class CameraActivity : AppCompatActivity() {
 
             // Reset cached location
             location = null
+        }
+    }
+
+    private val requestMultiplePermissions = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) {
+        if (it.isNotEmpty()) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(
+                    this, getString(R.string.app_permissions_toast), Toast.LENGTH_SHORT
+                ).show()
+                finish()
+            }
+            sharedPreferences.saveLocation = allLocationPermissionsGranted()
         }
     }
 
@@ -356,13 +370,6 @@ open class CameraActivity : AppCompatActivity() {
 
         // Register shortcuts
         ShortcutsUtils.registerShortcuts(this)
-
-        // Request camera permissions
-        if (!allPermissionsGranted() || !allLocationPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                this, REQUIRED_PERMISSIONS + REQUIRED_PERMISSIONS_LOCATION, REQUEST_CODE_PERMISSIONS
-            )
-        }
 
         // Initialize camera manager
         cameraManager = CameraManager(this)
@@ -609,6 +616,13 @@ open class CameraActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        // Request camera permissions
+        if (!allPermissionsGranted() || sharedPreferences.saveLocation == null) {
+            requestMultiplePermissions.launch(
+                REQUIRED_PERMISSIONS + REQUIRED_PERMISSIONS_LOCATION
+            )
+        }
+
         // Set bright screen
         setBrightScreen(sharedPreferences.brightScreen)
 
@@ -635,21 +649,6 @@ open class CameraActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cameraManager.shutdown()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    this, getString(R.string.app_permissions_toast), Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-            sharedPreferences.saveLocation = allLocationPermissionsGranted()
-        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -1690,7 +1689,6 @@ open class CameraActivity : AppCompatActivity() {
     companion object {
         private const val LOG_TAG = "Aperture"
 
-        private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS =
             mutableListOf(
                 Manifest.permission.CAMERA,
