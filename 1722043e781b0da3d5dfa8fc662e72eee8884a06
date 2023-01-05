@@ -16,6 +16,24 @@
       "message": "We\u0027ll need additional changes for RRO like done in 15110: Rename to org.calyxos.aperture | https://review.calyxos.org/c/CalyxOS/platform_packages_apps_Aperture/+/15110 if we go this way.",
       "revId": "1722043e781b0da3d5dfa8fc662e72eee8884a06",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ae84b4_eb0c6a50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-05T14:57:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a042ea0a_24f58a34",
+      "revId": "1722043e781b0da3d5dfa8fc662e72eee8884a06",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
