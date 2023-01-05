@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99a9c4b2_dee06c8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-01-05T15:54:33Z",
+      "side": 1,
+      "message": "`adb shell pm dump com.android.camera2` after upgrade\n\nhttps://zifb.in/TqDqA0UoRT",
+      "revId": "f945ce55c1b6a8bda7637d3e6523bf2dcac07d49",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
