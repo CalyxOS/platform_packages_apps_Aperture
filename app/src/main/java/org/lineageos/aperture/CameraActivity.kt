@@ -9,6 +9,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.AnimatedVectorDrawable
@@ -265,6 +266,21 @@ open class CameraActivity : AppCompatActivity() {
             } ?: location
         }
 
+        @Suppress("OVERRIDE_DEPRECATION")
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+            // Required for Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+        }
+
+        @Suppress("OVERRIDE_DEPRECATION")
+        override fun onProviderEnabled(provider: String) {
+            // Required for Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+        }
+
+        @Suppress("OVERRIDE_DEPRECATION")
+        override fun onProviderDisabled(provider: String) {
+            // Required for Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+        }
+
         @SuppressLint("MissingPermission")
         fun register() {
             // Reset cached location
@@ -366,8 +382,14 @@ open class CameraActivity : AppCompatActivity() {
         hideStatusBars()
 
         setContentView(R.layout.activity_camera)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1
+            && keyguardManager.isKeyguardLocked
+        ) {
             setShowWhenLocked(true)
+
+            @SuppressLint("SourceLockedOrientationActivity")
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
 
         // Register shortcuts
