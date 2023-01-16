@@ -16,6 +16,23 @@
       "message": "Need to update and merge either this, or 347055: Aperture: Location permissions dialog | https://review.lineageos.org/c/LineageOS/android_packages_apps_Aperture/+/347055 before shipping.\n\nDon\u0027t want to diverge of course.",
       "revId": "3e038cd631049615b08870823d1f0507fb394cf0",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3f68abd_1a3969f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-01-16T16:19:53Z",
+      "side": 1,
+      "message": "Replaced by https://review.calyxos.org/c/CalyxOS/platform_packages_apps_Aperture/+/15292",
+      "revId": "3e038cd631049615b08870823d1f0507fb394cf0",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
