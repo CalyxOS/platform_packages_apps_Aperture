@@ -52,14 +52,15 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("androidx.appcompat:appcompat:1.6.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation("androidx.preference:preference:1.2.0")
-    implementation("com.google.android.material:material:1.8.0-beta01")
+    implementation("com.google.android.material:material:1.9.0-alpha01")
 
     // CameraX core library using the camera2 implementation
-    val cameraxVersion = "1.2.0"
+    val cameraxVersion = "1.3.0-alpha03"
     // The following line is optional, as the core library is included indirectly by camera-camera2
     implementation("androidx.camera:camera-core:${cameraxVersion}")
     implementation("androidx.camera:camera-camera2:${cameraxVersion}")
@@ -260,7 +261,7 @@ tasks.register("generateBp") {
                         dep == "org.jetbrains.kotlin:kotlin-stdlib-common" -> false
                         else -> true
                     }
-                }.toMutableList()
+                }.distinct().toMutableList()
 
                 if (addNoDeps) {
                     // Add -nodeps dependency for android_library/java_library_static

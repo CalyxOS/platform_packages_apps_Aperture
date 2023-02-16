@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022 The LineageOS Project
+ * SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,6 +12,7 @@ import android.util.Size
 import android.util.SizeF
 import androidx.camera.camera2.interop.Camera2CameraInfo
 import androidx.camera.core.CameraInfo
+import androidx.camera.core.CameraSelector
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import org.lineageos.aperture.getSupportedModes
@@ -23,19 +24,20 @@ import kotlin.reflect.safeCast
  * Class representing a device camera
  */
 @androidx.camera.camera2.interop.ExperimentalCamera2Interop
+@androidx.camera.core.ExperimentalLensFacing
 class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
     val cameraSelector = cameraInfo.cameraSelector
 
     val camera2CameraInfo = Camera2CameraInfo.from(cameraInfo)
     val cameraId = camera2CameraInfo.cameraId
 
-    val cameraFacing =
-        when (camera2CameraInfo.getCameraCharacteristic(CameraCharacteristics.LENS_FACING)) {
-            CameraCharacteristics.LENS_FACING_FRONT -> CameraFacing.FRONT
-            CameraCharacteristics.LENS_FACING_BACK -> CameraFacing.BACK
-            CameraCharacteristics.LENS_FACING_EXTERNAL -> CameraFacing.EXTERNAL
-            else -> CameraFacing.UNKNOWN
-        }
+    val cameraFacing = when (cameraInfo.lensFacing) {
+        CameraSelector.LENS_FACING_FRONT -> CameraFacing.FRONT
+        CameraSelector.LENS_FACING_BACK -> CameraFacing.BACK
+        CameraSelector.LENS_FACING_EXTERNAL -> CameraFacing.EXTERNAL
+        CameraSelector.LENS_FACING_UNKNOWN -> CameraFacing.UNKNOWN
+        else -> throw Exception("Unknown lens facing value")
+    }
 
     val exposureCompensationRange = cameraInfo.exposureState.exposureCompensationRange
     val hasFlashUnit = cameraInfo.hasFlashUnit()
@@ -69,7 +71,7 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
 
     val isLogical = sensors.size > 1
 
-    var intrinsicZoomRatio = 1f
+    val intrinsicZoomRatio = cameraInfo.intrinsicZoomRatio
     val logicalZoomRatios = cameraManager.getLogicalZoomRatios(cameraId)
 
     private val supportedVideoFramerates =
@@ -89,12 +91,9 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
 
     val supportedExtensionModes = cameraManager.extensionsManager.getSupportedModes(cameraSelector)
 
-    val supportedStabilizationModes = mutableListOf(StabilizationMode.OFF).apply {
+    val supportedVideoStabilizationModes = mutableListOf(VideoStabilizationMode.OFF).apply {
         val availableVideoStabilizationModes = camera2CameraInfo.getCameraCharacteristic(
             CameraCharacteristics.CONTROL_AVAILABLE_VIDEO_STABILIZATION_MODES
-        ) ?: IntArray(0)
-        val availableOpticalStabilization = camera2CameraInfo.getCameraCharacteristic(
-            CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION
         ) ?: IntArray(0)
 
         if (
@@ -102,7 +101,7 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
                 CameraMetadata.CONTROL_VIDEO_STABILIZATION_MODE_ON
             )
         ) {
-            add(StabilizationMode.DIGITAL)
+            add(VideoStabilizationMode.ON)
         }
         if (
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
@@ -110,14 +109,7 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
                 CameraMetadata.CONTROL_VIDEO_STABILIZATION_MODE_PREVIEW_STABILIZATION
             )
         ) {
-            add(StabilizationMode.HYBRID)
-        }
-        if (
-            availableOpticalStabilization.contains(
-                CameraMetadata.LENS_OPTICAL_STABILIZATION_MODE_ON
-            )
-        ) {
-            add(StabilizationMode.OPTICAL)
+            add(VideoStabilizationMode.ON_PREVIEW)
         }
     }.toList()
 

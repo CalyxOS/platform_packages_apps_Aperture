@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2022 The LineageOS Project
+     SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
@@ -15,11 +15,11 @@
     <string name="flash_button_description">Flash mode</string>
     <string name="flip_camera_button_description">Flip camera</string>
     <string name="gallery_button_description">Gallery</string>
+    <string name="google_lens_button_description">Open Google Lens</string>
     <string name="image_view_description">Image preview</string>
     <string name="photo_mode_button_description">Switch to photo mode</string>
     <string name="pro_button_description">Pro settings</string>
     <string name="qr_mode_button_description">Switch to QR scanner mode</string>
-    <string name="settings_back_button_description">Go back to camera mode</string>
     <string name="shutter_button_description">Shutter</string>
     <string name="video_mode_button_description">Switch to video mode</string>
     <string name="video_recording_state_button_description">Pause/resume video recording</string>
@@ -70,6 +70,9 @@
     <string name="qr_copy_description">Copy to clipboard</string>
     <string name="qr_icon_description">Icon</string>
     <string name="qr_share_description">Share</string>
+    <string name="qr_wifi_title">Connect to this Wi-Fi network</string>
+    <string name="qr_dpp_title" translatable="false">Wi-Fi Easy Connect™ (DPP)</string>
+    <string name="qr_dpp_description">Configure this device</string>
     <string name="qr_text">Text</string>
 
     <!-- Settings title -->
@@ -82,7 +85,7 @@
 
     <!-- General Preferences -->
     <string name="bright_screen_title">Bright screen</string>
-    <string name="bright_screen_summary">Locks brightness to 100%</string>
+    <string name="bright_screen_summary" formatted="false">Locks brightness to 100%</string>
     <string name="save_location_title">Save location data</string>
     <string name="save_location_summary">Include GPS location in metadata</string>
     <string name="save_location_toast">Location permissions not granted by the user.</string>
@@ -96,16 +99,10 @@
     <string name="photo_capture_mode_maximize_quality">Maximize quality</string>
     <string name="photo_capture_mode_minimize_latency">Minimize latency</string>
     <string name="photo_capture_mode_zsl">Zero shutter lag (experimental)</string>
-    <string name="image_stabilization_title">Enable image stabilization when available</string>
-    <string name="image_stabilization_summary">If the hardware supports it, enable optical image stabilization</string>
 
     <!-- Video Preferences -->
-    <string name="video_stabilization_title">Enable video stabilization when available</string>
-    <string name="video_stabilization_summary">When available, enable electronic image stabilization (EIS)</string>
-    <string name="video_stabilization_ois_title">Use OIS instead of EIS when available</string>
-    <string name="video_stabilization_ois_summary">If the hardware supports it, use optical image stabilization (OIS) instead of electronic image stabilization (EIS)</string>
-    <string name="video_stabilization_preview_title">Enable stabilization on preview when available</string>
-    <string name="video_stabilization_preview_summary">If available, apply image stabilization also to the preview and, if the hardware supports it, automatically enable optical image stabilization (OIS) together with electronic image stabilization (EIS) if the device deems that appropriate. Only some devices launched with Android 13 or newer supports this mode</string>
+    <string name="video_stabilization_title">Enable video stabilization</string>
+    <string name="video_stabilization_summary">When available, enable video stabilization to reduce camera vibrations during recording</string>
 
     <!-- Shortcuts -->
     <string name="shortcut_selfie">Take a selfie</string>

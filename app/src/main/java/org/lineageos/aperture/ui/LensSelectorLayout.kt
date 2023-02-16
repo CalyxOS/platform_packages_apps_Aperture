@@ -22,10 +22,10 @@ import org.lineageos.aperture.utils.Rotation
 import java.util.Locale
 
 @androidx.camera.camera2.interop.ExperimentalCamera2Interop
-class LensSelectorLayout(context: Context, attrs: AttributeSet?) : LinearLayoutCompat(
-    context, attrs
-) {
-    private val layoutInflater by lazy { LayoutInflater.from(context) }
+class LensSelectorLayout @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayoutCompat(context, attrs, defStyleAttr) {
+    private val layoutInflater by lazy { context.getSystemService(LayoutInflater::class.java) }
 
     private lateinit var activeCamera: Camera
 
@@ -93,9 +93,8 @@ class LensSelectorLayout(context: Context, attrs: AttributeSet?) : LinearLayoutC
         updateButtonsAttributes()
     }
 
-    @SuppressLint("InflateParams")
     private fun inflateButton(): Button {
-        val button = layoutInflater.inflate(R.layout.lens_selector_button, null) as Button
+        val button = layoutInflater.inflate(R.layout.lens_selector_button, this, false) as Button
         return button.apply {
             layoutParams = LayoutParams(32.px, 32.px).apply {
                 setMargins(5)

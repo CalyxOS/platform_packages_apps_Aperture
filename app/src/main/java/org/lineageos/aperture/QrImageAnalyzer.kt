@@ -1,11 +1,10 @@
 /*
- * SPDX-FileCopyrightText: 2022 The LineageOS Project
+ * SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.aperture
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.KeyguardManager
 import android.content.ClipData
@@ -26,12 +25,14 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.LinearLayoutCompat.LayoutParams
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import androidx.cardview.widget.CardView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.MultiFormatReader
 import com.google.zxing.Result
 import com.google.zxing.common.HybridBinarizer
+import org.lineageos.aperture.utils.QrTextClassifier
 
 class QrImageAnalyzer(private val activity: Activity) : ImageAnalysis.Analyzer {
     private val bottomSheetDialog by lazy {
@@ -39,11 +40,16 @@ class QrImageAnalyzer(private val activity: Activity) : ImageAnalysis.Analyzer {
             setContentView(R.layout.qr_bottom_sheet_dialog)
         }
     }
+    private val bottomSheetDialogCardView by lazy {
+        bottomSheetDialog.findViewById<CardView>(R.id.cardView)!!
+    }
     private val bottomSheetDialogTitle by lazy {
         bottomSheetDialog.findViewById<TextView>(R.id.title)!!
     }
     private val bottomSheetDialogData by lazy {
-        bottomSheetDialog.findViewById<TextView>(R.id.data)!!
+        bottomSheetDialog.findViewById<TextView>(R.id.data)!!.apply {
+            setTextClassifier(QrTextClassifier(context, textClassifier))
+        }
     }
     private val bottomSheetDialogIcon by lazy {
         bottomSheetDialog.findViewById<ImageView>(R.id.icon)!!
@@ -101,7 +107,7 @@ class QrImageAnalyzer(private val activity: Activity) : ImageAnalysis.Analyzer {
                         textClassification.actions.isNotEmpty()
                     ) {
                         with(textClassification.actions[0]) {
-                            bottomSheetDialogData.setOnClickListener { this.actionIntent.send() }
+                            bottomSheetDialogCardView.setOnClickListener { actionIntent.send() }
                             bottomSheetDialogTitle.text = this.title
                             this.icon.loadDrawableAsync(activity, {
                                 bottomSheetDialogIcon.setImageDrawable(it)
@@ -120,7 +126,7 @@ class QrImageAnalyzer(private val activity: Activity) : ImageAnalysis.Analyzer {
                             })
                         }
                     } else {
-                        bottomSheetDialogData.setOnClickListener {}
+                        bottomSheetDialogCardView.setOnClickListener {}
                         bottomSheetDialogTitle.text = activity.resources.getText(R.string.qr_text)
                         bottomSheetDialogIcon.setImageDrawable(
                             AppCompatResources.getDrawable(activity, R.drawable.ic_qr_type_text)
@@ -163,10 +169,9 @@ class QrImageAnalyzer(private val activity: Activity) : ImageAnalysis.Analyzer {
         }
     }
 
-    @SuppressLint("InflateParams")
     private fun inflateButton(): MaterialButton {
         val button = activity.layoutInflater.inflate(
-            R.layout.qr_bottom_sheet_action_button, null
+            R.layout.qr_bottom_sheet_action_button, bottomSheetDialogActionsLayout, false
         ) as MaterialButton
         return button.apply {
             layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
