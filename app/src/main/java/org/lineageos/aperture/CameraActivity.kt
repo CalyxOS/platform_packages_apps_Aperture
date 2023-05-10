@@ -17,7 +17,6 @@ import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.ColorDrawable
 import android.icu.text.DecimalFormat
 import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
@@ -49,6 +48,7 @@ import androidx.camera.extensions.ExtensionMode
 import androidx.camera.video.Quality
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoRecordEvent
+import androidx.camera.video.muted
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
@@ -58,6 +58,9 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
+import androidx.core.location.LocationListenerCompat
+import androidx.core.location.LocationManagerCompat
+import androidx.core.location.LocationRequestCompat
 import androidx.core.view.WindowCompat.getInsetsController
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -75,6 +78,16 @@ import coil.request.ImageRequest
 import coil.request.SuccessResult
 import coil.size.Scale
 import com.google.android.material.button.MaterialButton
+import org.lineageos.aperture.camera.Camera
+import org.lineageos.aperture.camera.CameraFacing
+import org.lineageos.aperture.camera.CameraManager
+import org.lineageos.aperture.camera.CameraMode
+import org.lineageos.aperture.camera.CameraState
+import org.lineageos.aperture.camera.FlashMode
+import org.lineageos.aperture.camera.Framerate
+import org.lineageos.aperture.camera.VideoStabilizationMode
+import org.lineageos.aperture.ext.*
+import org.lineageos.aperture.qr.QrImageAnalyzer
 import org.lineageos.aperture.ui.CapturePreviewLayout
 import org.lineageos.aperture.ui.CountDownView
 import org.lineageos.aperture.ui.GridView
@@ -86,15 +99,8 @@ import org.lineageos.aperture.ui.PreviewBlurView
 import org.lineageos.aperture.ui.VerticalSlider
 import org.lineageos.aperture.utils.AssistantIntent
 import org.lineageos.aperture.utils.BroadcastUtils
-import org.lineageos.aperture.utils.Camera
-import org.lineageos.aperture.utils.CameraFacing
-import org.lineageos.aperture.utils.CameraManager
-import org.lineageos.aperture.utils.CameraMode
 import org.lineageos.aperture.utils.CameraSoundsUtils
-import org.lineageos.aperture.utils.CameraState
 import org.lineageos.aperture.utils.ExifUtils
-import org.lineageos.aperture.utils.FlashMode
-import org.lineageos.aperture.utils.Framerate
 import org.lineageos.aperture.utils.GoogleLensUtils
 import org.lineageos.aperture.utils.GridMode
 import org.lineageos.aperture.utils.MediaStoreUtils
@@ -105,7 +111,6 @@ import org.lineageos.aperture.utils.ShortcutsUtils
 import org.lineageos.aperture.utils.StorageUtils
 import org.lineageos.aperture.utils.TimeUtils
 import org.lineageos.aperture.utils.TimerMode
-import org.lineageos.aperture.utils.VideoStabilizationMode
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
@@ -117,7 +122,6 @@ import kotlin.reflect.safeCast
 @androidx.camera.camera2.interop.ExperimentalCamera2Interop
 @androidx.camera.core.ExperimentalZeroShutterLag
 @androidx.camera.view.video.ExperimentalVideo
-@androidx.media3.common.util.UnstableApi
 open class CameraActivity : AppCompatActivity() {
     // Views
     private val aspectRatioButton by lazy { findViewById<Button>(R.id.aspectRatioButton) }
@@ -193,6 +197,10 @@ open class CameraActivity : AppCompatActivity() {
             field = value
             updateGalleryButton()
         }
+
+    // Photo
+    private var photoCaptureMode: Int? = null
+        get() = field!!
 
     // Video
     private val supportedVideoQualities: List<Quality>
@@ -273,7 +281,7 @@ open class CameraActivity : AppCompatActivity() {
     }
 
     private var location: Location? = null
-    private val locationListener = object : LocationListener {
+    private val locationListener = object : LocationListenerCompat {
         override fun onLocationChanged(location: Location) {
             val cameraActivity = this@CameraActivity
             cameraActivity.location = cameraActivity.location?.let {
@@ -283,21 +291,6 @@ open class CameraActivity : AppCompatActivity() {
                     cameraActivity.location
                 }
             } ?: location
-        }
-
-        @Suppress("OVERRIDE_DEPRECATION")
-        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-            // Required for Build.VERSION.SDK_INT < Build.VERSION_CODES.R
-        }
-
-        @Suppress("OVERRIDE_DEPRECATION")
-        override fun onProviderEnabled(provider: String) {
-            // Required for Build.VERSION.SDK_INT < Build.VERSION_CODES.R
-        }
-
-        @Suppress("OVERRIDE_DEPRECATION")
-        override fun onProviderDisabled(provider: String) {
-            // Required for Build.VERSION.SDK_INT < Build.VERSION_CODES.R
         }
 
         @SuppressLint("MissingPermission")
@@ -310,7 +303,16 @@ open class CameraActivity : AppCompatActivity() {
             ) {
                 // Request location updates
                 locationManager.allProviders.forEach {
-                    locationManager.requestLocationUpdates(it, 1000, 1f, this)
+                    LocationManagerCompat.requestLocationUpdates(
+                        locationManager,
+                        it,
+                        LocationRequestCompat.Builder(1000).apply {
+                            setMinUpdateDistanceMeters(1f)
+                            setQuality(LocationRequestCompat.QUALITY_BALANCED_POWER_ACCURACY)
+                        }.build(),
+                        this,
+                        Looper.getMainLooper()
+                    )
                 }
             }
         }
@@ -1081,8 +1083,15 @@ open class CameraActivity : AppCompatActivity() {
             }
         }
 
+        photoCaptureMode = sharedPreferences.photoCaptureMode.takeIf {
+            it != ImageCapture.CAPTURE_MODE_ZERO_SHUTTER_LAG || camera.supportsZsl
+        } ?: ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY
+
         // Only photo mode supports vendor extensions for now
-        val cameraSelector = if (cameraMode == CameraMode.PHOTO) {
+        val cameraSelector = if (
+            cameraMode == CameraMode.PHOTO &&
+            photoCaptureMode != ImageCapture.CAPTURE_MODE_ZERO_SHUTTER_LAG
+        ) {
             cameraManager.extensionsManager.getExtensionEnabledCameraSelector(
                 camera.cameraSelector, sharedPreferences.photoEffect
             )
@@ -1117,7 +1126,7 @@ open class CameraActivity : AppCompatActivity() {
         cameraController.setEnabledUseCases(cameraUseCases)
 
         // Restore settings that needs a rebind
-        cameraController.imageCaptureMode = sharedPreferences.photoCaptureMode
+        cameraController.imageCaptureMode = photoCaptureMode as Int
 
         // Bind camera controller to lifecycle
         cameraController.bindToLifecycle(this)
@@ -1286,7 +1295,7 @@ open class CameraActivity : AppCompatActivity() {
             // Torch mode can be toggled at any time
             flashButton.isEnabled =
                 cameraMode != CameraMode.PHOTO || cameraState == CameraState.IDLE
-            micButton.isEnabled = cameraState == CameraState.IDLE
+            micButton.isEnabled = cameraState == CameraState.IDLE || audioConfig.audioEnabled
             settingsButton.isEnabled = cameraState == CameraState.IDLE
         }
     }
@@ -1543,7 +1552,7 @@ open class CameraActivity : AppCompatActivity() {
     private fun updateMicrophoneModeIcon() {
         micButton.isVisible = cameraMode == CameraMode.VIDEO
 
-        audioConfig.audioEnabled.let {
+        sharedPreferences.lastMicMode.let {
             micButton.setCompoundDrawablesWithIntrinsicBounds(
                 0,
                 if (it) R.drawable.ic_mic_on else R.drawable.ic_mic_off,
@@ -1558,7 +1567,7 @@ open class CameraActivity : AppCompatActivity() {
      * Toggles microphone during video recording
      */
     private fun toggleMicrophoneMode() {
-        setMicrophoneMode(!audioConfig.audioEnabled)
+        setMicrophoneMode(!sharedPreferences.lastMicMode)
     }
 
     /**
@@ -1567,9 +1576,9 @@ open class CameraActivity : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     private fun setMicrophoneMode(microphoneMode: Boolean) {
         audioConfig = AudioConfig.create(microphoneMode)
-        updateMicrophoneModeIcon()
-
+        recording?.muted = !microphoneMode
         sharedPreferences.lastMicMode = microphoneMode
+        updateMicrophoneModeIcon()
     }
 
     /**
@@ -1577,7 +1586,9 @@ open class CameraActivity : AppCompatActivity() {
      */
     private fun updatePhotoEffectIcon() {
         effectButton.isVisible =
-            cameraMode == CameraMode.PHOTO && camera.supportedExtensionModes.size > 1
+            cameraMode == CameraMode.PHOTO &&
+                    photoCaptureMode != ImageCapture.CAPTURE_MODE_ZERO_SHUTTER_LAG &&
+                    camera.supportedExtensionModes.size > 1
 
         sharedPreferences.photoEffect.let {
             effectButton.setCompoundDrawablesWithIntrinsicBounds(
