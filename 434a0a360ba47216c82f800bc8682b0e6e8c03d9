@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f6c10b8_dd3f1e95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-05-11T14:01:43Z",
+      "side": 1,
+      "message": "It was broken even with the first revert so this is fine, just gotta get the Gallery changes finished.",
+      "revId": "434a0a360ba47216c82f800bc8682b0e6e8c03d9",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
