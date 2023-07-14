@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b15c43_1bccc3f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-14T21:22:08Z",
+      "side": 1,
+      "message": "Needs 18043: soong: Add `aapt_version_code` default | https://review.calyxos.org/c/CalyxOS/vendor_calyx/+/18043",
+      "revId": "5f3303c2042761465057da7c920886e6295d6049",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
