@@ -37,6 +37,15 @@
             app:summary="@string/leveler_summary"
             app:title="@string/leveler_title" />
 
+        <ListPreference
+            app:defaultValue="shutter"
+            app:entries="@array/volume_buttons_action_entries"
+            app:entryValues="@array/volume_buttons_action_values"
+            app:iconSpaceReserved="false"
+            app:key="volume_buttons_action"
+            app:title="@string/volume_buttons_action_title"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -78,6 +87,17 @@
             app:key="video_stabilization"
             app:summary="@string/video_stabilization_summary"
             app:title="@string/video_stabilization_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/advanced_header">
+
+        <Preference
+            app:fragment="org.lineageos.aperture.SettingsActivity$ProcessingSettingsFragment"
+            app:iconSpaceReserved="false"
+            app:title="@string/processing_title" />
 
     </PreferenceCategory>
 
