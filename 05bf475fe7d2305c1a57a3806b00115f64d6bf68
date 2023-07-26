@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c96a286_9f17ee72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-26T01:37:45Z",
+      "side": 1,
+      "message": "Settings -\u003e Advanced -\u003e Processing crashes\n\n```\n                         E  FATAL EXCEPTION: main\n                         E  Process: com.android.camera2, PID: 21113\n                         E  androidx.fragment.app.Fragment$InstantiationException: Unable to instantiate fragment org.lineageos.aperture.SettingsActivity$Pr\n                            ocessingSettingsFragment: make sure class name exists\n                         E      at androidx.fragment.app.FragmentFactory.loadFragmentClass(FragmentFactory.java:97)\n                         E      at androidx.fragment.app.Fragment.instantiate(Fragment.java:640)\n                         E      at androidx.fragment.app.FragmentContainer.instantiate(FragmentContainer.java:57)\n                         E      at androidx.fragment.app.FragmentManager$2.instantiate(FragmentManager.java:470)\n                         E      at androidx.preference.PreferenceFragmentCompat.onPreferenceTreeClick(PreferenceFragmentCompat.java:425)\n                         E      at androidx.preference.Preference.performClick(Preference.java:1194)\n                         E      at androidx.preference.Preference.performClick(Preference.java:1168)\n                         E      at androidx.preference.Preference$1.onClick(Preference.java:181)\n                         E      at android.view.View.performClick(View.java:7542)\n                         E      at android.view.View.performClickInternal(View.java:7519)\n                         E      at android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n                         E      at android.view.View$PerformClick.run(View.java:29476)\n                         E      at android.os.Handler.handleCallback(Handler.java:942)\n                         E      at android.os.Handler.dispatchMessage(Handler.java:99)\n                         E      at android.os.Looper.loopOnce(Looper.java:201)\n                         E      at android.os.Looper.loop(Looper.java:288)\n                         E      at android.app.ActivityThread.main(ActivityThread.java:7918)\n                         E      at java.lang.reflect.Method.invoke(Native Method)\n                         E      at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)\n                         E      at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:936)\n                         E  Caused by: java.lang.ClassNotFoundException: org.lineageos.aperture.SettingsActivity$ProcessingSettingsFragment\n                         E      at java.lang.Class.classForName(Native Method)\n                         E      at java.lang.Class.forName(Class.java:454)\n                         E      at androidx.fragment.app.FragmentFactory.loadClass(FragmentFactory.java:53)\n                         E      at androidx.fragment.app.FragmentFactory.loadFragmentClass(FragmentFactory.java:94)\n                         E      ... 19 more\n                         E  Caused by: java.lang.ClassNotFoundException: org.lineageos.aperture.SettingsActivity$ProcessingSettingsFragment\n                         E      ... 23 more\n```",
+      "revId": "05bf475fe7d2305c1a57a3806b00115f64d6bf68",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
