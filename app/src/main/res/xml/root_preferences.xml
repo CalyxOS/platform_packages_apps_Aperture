@@ -95,7 +95,7 @@
         app:title="@string/advanced_header">
 
         <Preference
-            app:fragment="org.lineageos.aperture.SettingsActivity$ProcessingSettingsFragment"
+            app:fragment="com.android.camera2.SettingsActivity$ProcessingSettingsFragment"
             app:iconSpaceReserved="false"
             app:title="@string/processing_title" />
 
