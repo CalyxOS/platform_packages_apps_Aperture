@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
 # Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
@@ -19,3 +22,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Any class extending SettingsFragment can be referenced in XML.
+-keep class ** extends org.lineageos.aperture.SettingsActivity$SettingsFragment

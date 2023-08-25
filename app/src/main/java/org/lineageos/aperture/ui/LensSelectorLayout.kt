@@ -5,7 +5,6 @@
 
 package org.lineageos.aperture.ui
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.DecimalFormat
 import android.icu.text.DecimalFormatSymbols
@@ -13,9 +12,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.view.children
 import androidx.core.view.setMargins
+import androidx.lifecycle.findViewTreeLifecycleOwner
 import org.lineageos.aperture.R
 import org.lineageos.aperture.camera.Camera
+import org.lineageos.aperture.camera.CameraState
+import org.lineageos.aperture.camera.CameraViewModel
 import org.lineageos.aperture.ext.*
 import org.lineageos.aperture.utils.Rotation
 import java.util.Locale
@@ -39,11 +42,33 @@ class LensSelectorLayout @JvmOverloads constructor(
     var onCameraChangeCallback: (camera: Camera) -> Unit = {}
     var onZoomRatioChangeCallback: (zoomRatio: Float) -> Unit = {}
 
-    internal var screenRotation = Rotation.ROTATION_0
+    internal var cameraViewModel: CameraViewModel? = null
         set(value) {
+            val lifecycleOwner = findViewTreeLifecycleOwner() ?: return
+
+            // Unregister
+            field?.cameraState?.removeObservers(lifecycleOwner)
+            field?.screenRotation?.removeObservers(lifecycleOwner)
+
             field = value
-            updateViewsRotation()
+
+            value?.let { cameraViewModel ->
+                cameraViewModel.cameraState.observe(lifecycleOwner) {
+                    val cameraState = it ?: return@observe
+
+                    children.forEach { view ->
+                        view.isSoundEffectsEnabled = cameraState == CameraState.IDLE
+                    }
+                }
+                cameraViewModel.screenRotation.observe(lifecycleOwner) {
+                    val screenRotation = it ?: return@observe
+
+                    updateViewsRotation(screenRotation)
+                }
+            }
         }
+    private val screenRotation
+        get() = cameraViewModel?.screenRotation?.value ?: Rotation.ROTATION_0
 
     fun setCamera(activeCamera: Camera, availableCameras: Collection<Camera>) {
         this.activeCamera = activeCamera
@@ -130,7 +155,7 @@ class LensSelectorLayout @JvmOverloads constructor(
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @Suppress("SetTextI18n")
     private fun updateButtonAttributes(button: Button, currentCamera: Boolean) {
         button.isEnabled = !currentCamera
         val formattedZoomRatio = formatZoomRatio(buttonToApproximateZoomRatio[button]!!)
@@ -142,7 +167,7 @@ class LensSelectorLayout @JvmOverloads constructor(
         button.rotation = screenRotation.compensationValue.toFloat()
     }
 
-    private fun updateViewsRotation() {
+    private fun updateViewsRotation(screenRotation: Rotation) {
         val rotation = screenRotation.compensationValue.toFloat()
 
         for (button in buttonToApproximateZoomRatio.keys) {

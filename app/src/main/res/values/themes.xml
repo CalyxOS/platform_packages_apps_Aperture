@@ -6,31 +6,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Aperture" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
         <item name="dialogCornerRadius">28dp</item>
     </style>
 
     <!-- Main activity theme. -->
     <style name="Theme.Aperture.Camera" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="android:navigationBarColor">@android:color/black</item>
-        <item name="android:statusBarColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="O_MR1">
             shortEdges
         </item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
     </style>
 
     <!-- Settings activity theme. -->
-    <style name="Theme.Aperture.Settings" parent="Theme.Aperture">
+    <style name="Theme.Aperture.Settings">
         <item name="android:switchStyle">@style/Theme.Aperture.Settings.Switch</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
-        <item name="android:windowTranslucentNavigation">true</item>
         <item name="alertDialogTheme">@style/Theme.Aperture.Settings.AlertDialog</item>
         <item name="materialAlertDialogTheme">@style/Theme.Aperture.Settings.AlertDialog</item>
+        <item name="preferenceTheme">@style/Theme.Aperture.Settings.Preference</item>
     </style>
 
     <!-- Settings alert dialog theme. -->
@@ -44,6 +42,16 @@
     <style name="Theme.Aperture.Settings.AlertDialogStyle" parent="MaterialAlertDialog.Material3">
         <item name="shapeAppearance">@style/ShapeAppearance.Material3.MediumComponent</item>
         <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <!-- Settings message box -->
+    <style name="Theme.Aperture.Settings.MessageBox">
+        <item name="selectable">false</item>
+    </style>
+
+    <!-- Settings preference style. -->
+    <style name="Theme.Aperture.Settings.Preference" parent="PreferenceThemeOverlay">
+        <item name="android:tint">?attr/colorOnSurface</item>
     </style>
 
     <!-- Settings switch theme. -->
@@ -99,5 +107,14 @@
     <style name="Theme.Aperture.Camera.ToolbarExpanded" parent="Theme.Aperture.Camera.ToolbarCollapsed">
         <item name="android:textSize">36sp</item>
         <item name="android:drawablePadding">10dp</item>
+    </style>
+
+    <!-- Info chip -->
+    <style name="Theme.Aperture.Camera.InfoChip" />
+
+    <style name="Theme.Aperture.Camera.InfoChip.ImageView">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:visibility">gone</item>
     </style>
 </resources>
