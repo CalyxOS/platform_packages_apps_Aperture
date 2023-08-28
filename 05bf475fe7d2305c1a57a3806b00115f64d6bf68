@@ -34,6 +34,24 @@
       "parentUuid": "7c96a286_9f17ee72",
       "revId": "05bf475fe7d2305c1a57a3806b00115f64d6bf68",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7731351_67eadb76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-28T12:45:00Z",
+      "side": 1,
+      "message": "18844: Merge remote-tracking branch \u0027lineage/lineage-20.0\u0027 into staging/android13_merge-lineage-20.0 | https://review.calyxos.org/c/CalyxOS/platform_packages_apps_Aperture/+/18844",
+      "parentUuid": "17c22cc6_283a50b9",
+      "revId": "05bf475fe7d2305c1a57a3806b00115f64d6bf68",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ],
   "submitRequirementResults": [
