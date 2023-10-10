@@ -33,6 +33,24 @@
       "message": "Upstream commit is different",
       "revId": "a3246da73c22819faee0a8266d8e061add3a3bea",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "413cf0de_95b6136f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-10T23:02:39Z",
+      "side": 1,
+      "message": "369121: Aperture: Use prebuilt SDK version | https://review.lineageos.org/c/LineageOS/android_packages_apps_Aperture/+/369121",
+      "parentUuid": "655e94fe_d230cf03",
+      "revId": "a3246da73c22819faee0a8266d8e061add3a3bea",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
