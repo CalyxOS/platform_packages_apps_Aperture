@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d14258b_fa60dcf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-10-10T23:04:51Z",
+      "side": 1,
+      "message": "Would\u0027ve waited for merge but let\u0027s ship this.",
+      "revId": "bd05c1a47d272606034fccdea6d25b68b827219b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
