@@ -16,6 +16,23 @@
       "message": "sdk_version: 33",
       "revId": "a3246da73c22819faee0a8266d8e061add3a3bea",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eced9032_d2645e9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-10-10T01:06:46Z",
+      "side": 1,
+      "message": "Upstream commit is different",
+      "revId": "a3246da73c22819faee0a8266d8e061add3a3bea",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
