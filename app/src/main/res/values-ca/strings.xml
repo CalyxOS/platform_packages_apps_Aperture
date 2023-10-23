@@ -64,6 +64,7 @@
     <string name="photo_ffc_mirror_summary">Desa les fotos de la càmera frontal tal com apareixen a la vista prèvia</string>
     <string name="video_stabilization_title">Activa l\'estabilització de vídeo</string>
     <string name="video_stabilization_summary">Quan estigui disponible, activeu l\'estabilització de vídeo per reduir les vibracions de la càmera durant la gravació</string>
+    <string name="video_mirror_mode_title">Activa el mirall de la càmera</string>
     <string name="processing_title">Processant</string>
     <string name="processing_info">En mode foto, quan s\'utilitza el mode ZSL, només es tindran en compte els valors per defecte i desactivats. Per al mode de vídeo, només es tindran en compte els valors per defecte, desactivats i ràpids.</string>
     <string name="edge_mode_title">Nitidesa</string>
@@ -129,4 +130,10 @@
     <string name="thermal_status_emergency">L\'acceleració tèrmica està en estat d\'emergència, l\'aplicació es tancarà ara.</string>
     <string name="thermal_status_shutdown">Apagada deguda a l\'acceleració tèrmica, el dispositiu s\'apagarà.</string>
     <string name="force_torch_help">En mode foto, podeu prémer prolongadament el botó del flaix per activar el flaix.</string>
+    <string name="camera_mode_photo">Foto</string>
+    <string name="camera_mode_video">Vídeo</string>
+    <string name="camera_mode_qr">Escaneja</string>
+    <string name="video_mirror_mode_off">Desactivat</string>
+    <string name="video_mirror_mode_on">Activat</string>
+    <string name="video_mirror_mode_on_ffc_only">Només la càmera frontal</string>
 </resources>

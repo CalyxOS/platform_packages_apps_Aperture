@@ -18,7 +18,7 @@ apply {
 
 buildscript {
     repositories {
-        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.1/.m2")
+        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.3/.m2")
     }
 
     dependencies {
@@ -28,6 +28,7 @@ buildscript {
 
 android {
     compileSdk = 33
+    namespace = "org.lineageos.aperture"
 
     defaultConfig {
         applicationId = "com.android.camera2"
@@ -83,7 +84,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     // CameraX core library using the camera2 implementation
-    val cameraxVersion = "1.4.0-alpha01"
+    val cameraxVersion = "1.4.0-alpha02"
     // The following line is optional, as the core library is included indirectly by camera-camera2
     implementation("androidx.camera:camera-core:${cameraxVersion}")
     implementation("androidx.camera:camera-camera2:${cameraxVersion}")

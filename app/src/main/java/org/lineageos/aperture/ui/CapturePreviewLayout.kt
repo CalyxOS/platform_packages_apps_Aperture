@@ -21,9 +21,9 @@ import androidx.media3.ui.PlayerView
 import org.lineageos.aperture.R
 import org.lineageos.aperture.camera.CameraViewModel
 import org.lineageos.aperture.ext.*
+import org.lineageos.aperture.models.MediaType
+import org.lineageos.aperture.models.Rotation
 import org.lineageos.aperture.utils.ExifUtils
-import org.lineageos.aperture.utils.MediaType
-import org.lineageos.aperture.utils.Rotation
 import java.io.InputStream
 
 /**
@@ -69,6 +69,10 @@ class CapturePreviewLayout(context: Context, attrs: AttributeSet?) : ConstraintL
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
+
+        setOnClickListener {
+            // Prevent clicks behind the view
+        }
 
         cancelButton.setOnClickListener {
             stopPreview()

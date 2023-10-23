@@ -12,19 +12,21 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.extensions.ExtensionMode
 import androidx.camera.video.Quality
 import androidx.core.content.edit
-import org.lineageos.aperture.camera.CameraFacing
-import org.lineageos.aperture.camera.CameraMode
-import org.lineageos.aperture.camera.ColorCorrectionAberrationMode
-import org.lineageos.aperture.camera.DistortionCorrectionMode
-import org.lineageos.aperture.camera.EdgeMode
-import org.lineageos.aperture.camera.FlashMode
-import org.lineageos.aperture.camera.FrameRate
-import org.lineageos.aperture.camera.HotPixelMode
-import org.lineageos.aperture.camera.NoiseReductionMode
-import org.lineageos.aperture.camera.ShadingMode
-import org.lineageos.aperture.utils.GestureActions
-import org.lineageos.aperture.utils.GridMode
-import org.lineageos.aperture.utils.TimerMode
+import org.lineageos.aperture.models.CameraFacing
+import org.lineageos.aperture.models.CameraMode
+import org.lineageos.aperture.models.ColorCorrectionAberrationMode
+import org.lineageos.aperture.models.DistortionCorrectionMode
+import org.lineageos.aperture.models.EdgeMode
+import org.lineageos.aperture.models.FlashMode
+import org.lineageos.aperture.models.FrameRate
+import org.lineageos.aperture.models.GestureActions
+import org.lineageos.aperture.models.GridMode
+import org.lineageos.aperture.models.HotPixelMode
+import org.lineageos.aperture.models.NoiseReductionMode
+import org.lineageos.aperture.models.ShadingMode
+import org.lineageos.aperture.models.TimerMode
+import org.lineageos.aperture.models.VideoDynamicRange
+import org.lineageos.aperture.models.VideoMirrorMode
 
 // Helpers
 internal fun SharedPreferences.getBoolean(key: String): Boolean? {
@@ -444,4 +446,43 @@ internal var SharedPreferences.forceTorchHelpShown: Boolean
     get() = getBoolean(FORCE_TORCH_HELP_SHOWN_KEY, FORCE_TORCH_HELP_SHOWN_DEFAULT)
     set(value) = edit {
         putBoolean(FORCE_TORCH_HELP_SHOWN_KEY, value)
+    }
+
+// Video dynamic range
+private const val VIDEO_DYNAMIC_RANGE_KEY = "video_dynamic_range"
+private const val VIDEO_DYNAMIC_RANGE_DEFAULT = "sdr"
+internal var SharedPreferences.videoDynamicRange: VideoDynamicRange
+    get() = when (getString(VIDEO_DYNAMIC_RANGE_KEY, VIDEO_DYNAMIC_RANGE_DEFAULT)) {
+        "sdr" -> VideoDynamicRange.SDR
+        "hlg_10_bit" -> VideoDynamicRange.HLG_10_BIT
+        "hdr10_10_bit" -> VideoDynamicRange.HDR10_10_BIT
+        "hdr10_plus_10_bit" -> VideoDynamicRange.HDR10_PLUS_10_BIT
+        "dolby_vision_10_bit" -> VideoDynamicRange.DOLBY_VISION_10_BIT
+        "dolby_vision_8_bit" -> VideoDynamicRange.DOLBY_VISION_8_BIT
+        // Default to sdr
+        else -> VideoDynamicRange.SDR
+    }
+    set(value) = edit {
+        putString(
+            VIDEO_DYNAMIC_RANGE_KEY, when (value) {
+                VideoDynamicRange.SDR -> "sdr"
+                VideoDynamicRange.HLG_10_BIT -> "hlg_10_bit"
+                VideoDynamicRange.HDR10_10_BIT -> "hdr10_10_bit"
+                VideoDynamicRange.HDR10_PLUS_10_BIT -> "hdr10_plus_10_bit"
+                VideoDynamicRange.DOLBY_VISION_10_BIT -> "dolby_vision_10_bit"
+                VideoDynamicRange.DOLBY_VISION_8_BIT -> "dolby_vision_8_bit"
+            }
+        )
+    }
+
+// Video mirror mode
+private const val VIDEO_MIRROR_MODE_KEY = "video_mirror_mode"
+private const val VIDEO_MIRROR_MODE_DEFAULT = "off"
+internal val SharedPreferences.videoMirrorMode: VideoMirrorMode
+    get() = when (getString(VIDEO_MIRROR_MODE_KEY, VIDEO_MIRROR_MODE_DEFAULT)) {
+        "off" -> VideoMirrorMode.OFF
+        "on" -> VideoMirrorMode.ON
+        "on_ffc_only" -> VideoMirrorMode.ON_FFC_ONLY
+        // Default to off
+        else -> VideoMirrorMode.OFF
     }
