@@ -26,7 +26,8 @@ import kotlin.math.absoluteValue
 @androidx.camera.camera2.interop.ExperimentalCamera2Interop
 class CameraManager(context: Context) {
     private val cameraProvider = ProcessCameraProvider.getInstance(context).get()
-    val extensionsManager = ExtensionsManager.getInstanceAsync(context, cameraProvider).get()!!
+    val extensionsManager: ExtensionsManager =
+        ExtensionsManager.getInstanceAsync(context, cameraProvider).get()
     val cameraController = LifecycleCameraController(context)
     val cameraExecutor: ExecutorService = Executors.newSingleThreadExecutor()
 
@@ -56,13 +57,11 @@ class CameraManager(context: Context) {
                                 else -> null
                             }
                         }.distinct().forEach { quality ->
-                            if (!this.containsKey(cameraId)) {
-                                this[cameraId] = mutableMapOf()
+                            getOrCreate(cameraId).apply {
+                                getOrCreate(quality).apply {
+                                    putAll(frameRates)
+                                }
                             }
-                            if (!this[cameraId]!!.containsKey(quality)) {
-                                this[cameraId]!![quality] = mutableMapOf()
-                            }
-                            this[cameraId]!![quality]!!.putAll(frameRates)
                         }
                     }
                 }
@@ -94,10 +93,9 @@ class CameraManager(context: Context) {
                     val approximateZoomRatio = it[i + 1].toFloat()
                     val exactZoomRatio = it[i + 2].toFloat()
 
-                    if (!this.containsKey(cameraId)) {
-                        this[cameraId] = mutableMapOf()
+                    getOrCreate(cameraId).apply {
+                        this[approximateZoomRatio] = exactZoomRatio
                     }
-                    this[cameraId]!![approximateZoomRatio] = exactZoomRatio
                 }
             }
         }.map { a ->
@@ -181,9 +179,15 @@ class CameraManager(context: Context) {
         }
     }
 
+    /**
+     * Get a suitable [Camera] for the provided [CameraFacing] and [CameraMode].
+     * @param cameraFacing The requested [CameraFacing]
+     * @param cameraMode The requested [CameraMode]
+     * @return A [Camera] that is compatible with the provided configuration or null
+     */
     fun getCameraOfFacingOrFirstAvailable(
         cameraFacing: CameraFacing, cameraMode: CameraMode
-    ): Camera {
+    ): Camera? {
         val camera = when (cameraFacing) {
             CameraFacing.BACK -> mainBackCamera
             CameraFacing.FRONT -> mainFrontCamera
@@ -192,17 +196,23 @@ class CameraManager(context: Context) {
         }
         return camera?.let {
             if (cameraMode == CameraMode.VIDEO && !it.supportsVideoRecording) {
-                availableCamerasSupportingVideoRecording.first()
+                availableCamerasSupportingVideoRecording.firstOrNull()
             } else {
                 it
             }
         } ?: when (cameraMode) {
-            CameraMode.VIDEO -> availableCamerasSupportingVideoRecording.first()
-            else -> availableCameras.first()
+            CameraMode.VIDEO -> availableCamerasSupportingVideoRecording.firstOrNull()
+            else -> availableCameras.firstOrNull()
         }
     }
 
-    fun getNextCamera(camera: Camera, cameraMode: CameraMode): Camera {
+    /**
+     * Return the next camera, used for flip camera.
+     * @param camera The current [Camera] used
+     * @param cameraMode The current [CameraMode]
+     * @return The next camera, may return null if all the cameras disappeared
+     */
+    fun getNextCamera(camera: Camera, cameraMode: CameraMode): Camera? {
         val cameras = when (cameraMode) {
             CameraMode.VIDEO -> availableCamerasSupportingVideoRecording
             else -> availableCameras
@@ -220,7 +230,7 @@ class CameraManager(context: Context) {
         ) + 1
 
         return if (newCameraIndex >= cameras.size) {
-            cameras.first()
+            cameras.firstOrNull()
         } else {
             cameras[newCameraIndex]
         }
