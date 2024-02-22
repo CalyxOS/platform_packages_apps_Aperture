@@ -37,9 +37,9 @@
     <string name="qr_copy_description">复制到剪贴板</string>
     <string name="qr_icon_description">图标</string>
     <string name="qr_share_description">分享</string>
-    <string name="qr_wifi_title">连接到此 Wi-Fi 网络</string>
     <string name="qr_dpp_description">配置此设备</string>
     <string name="qr_text">文本</string>
+    <string name="qr_wifi_title">连接到此 Wi-Fi 网络</string>
     <string name="title_activity_settings">设置</string>
     <string name="general_header">常规</string>
     <string name="photos_header">照片</string>
@@ -120,6 +120,7 @@
     <string name="error_do_not_disturb_mode_enabled">勿扰模式已启用。请关闭勿扰模式并重新打开应用。</string>
     <string name="error_unknown_recoverable">发现可恢复的未知错误。  请将此情况报告给开发商。</string>
     <string name="error_unknown_critical">发现严重的未知错误。  请将此情况报告给开发商。</string>
+    <string name="error_no_cameras_available">未发现设备上的相机，无法启动应用程序。</string>
     <string name="gesture_action_shutter">快门</string>
     <string name="gesture_action_zoom">缩放</string>
     <string name="gesture_action_volume">音量</string>

@@ -37,9 +37,18 @@
     <string name="qr_copy_description">Copier dans le presse-papiers</string>
     <string name="qr_icon_description">Icône</string>
     <string name="qr_share_description">Partager</string>
-    <string name="qr_wifi_title">Se connecter à ce réseau Wi-Fi</string>
+    <string name="qr_no_app_available_for_action">Aucune application disponible pour gérer cette action</string>
+    <string name="qr_address_title">Ajouter un contact</string>
+    <string name="qr_address_content_description">Ajouter un contact</string>
     <string name="qr_dpp_description">Configurer cet appareil</string>
+    <string name="qr_fido_title">Utiliser une clé d\'accès</string>
+    <string name="qr_sms_title">Envoyer un nouvel SMS</string>
+    <string name="qr_sms_content_description">Envoyer un nouvel SMS aux destinataires spécifiés</string>
+    <string name="qr_tel_title">Appeler le numéro de téléphone</string>
+    <string name="qr_tel_content_description">Appeler le numéro de téléphone</string>
     <string name="qr_text">Texte</string>
+    <string name="qr_wifi_title">Se connecter à ce réseau Wi-Fi</string>
+    <string name="qr_wifi_content_description">Ajouter ce réseau Wi-Fi à la liste des réseaux connus et y connecter l\'appareil</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="general_header">Général</string>
     <string name="photos_header">Photos</string>
@@ -64,6 +73,7 @@
     <string name="photo_ffc_mirror_summary">Enregistrer les clichés de l\'appareil photo frontal tels qu\'affichés dans l\'aperçu</string>
     <string name="video_stabilization_title">Activer la stabilisation vidéo</string>
     <string name="video_stabilization_summary">Si disponible, activer la stabilisation vidéo pour réduire les vibrations de la caméra pendant l\'enregistrement</string>
+    <string name="video_mirror_mode_title">Activer le mode miroir en vidéo</string>
     <string name="processing_title">Traitement en cours</string>
     <string name="processing_info">En mode photo, lorsque le mode ZSL est utilisé, seules les valeurs par défaut et désactivé seront prises en compte. Pour le mode vidéo, seules les valeurs par défaut, désactivé et rapide seront prises en compte.</string>
     <string name="edge_mode_title">Affinage</string>
@@ -119,6 +129,7 @@
     <string name="error_do_not_disturb_mode_enabled">Le mode Ne Pas Déranger est activé. Désactivez-le et rouvrez l\'application.</string>
     <string name="error_unknown_recoverable">Une erreur inconnue récupérable a été trouvée. Veuillez la signaler aux développeurs.</string>
     <string name="error_unknown_critical">Une erreur critique inconnue a été trouvée. Veuillez la signaler aux développeurs.</string>
+    <string name="error_no_cameras_available">Aucune caméra n\'a été trouvée sur l\'appareil, impossible de démarrer l\'application.</string>
     <string name="gesture_action_shutter">Obturateur</string>
     <string name="gesture_action_zoom">Agrandir</string>
     <string name="gesture_action_volume">Volume</string>
@@ -133,5 +144,6 @@
     <string name="camera_mode_video">Vidéo</string>
     <string name="camera_mode_qr">Scanner</string>
     <string name="video_mirror_mode_off">Désactivé</string>
+    <string name="video_mirror_mode_on">Activé</string>
     <string name="video_mirror_mode_on_ffc_only">Caméra frontale uniquement</string>
 </resources>

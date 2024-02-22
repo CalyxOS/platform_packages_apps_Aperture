@@ -37,9 +37,9 @@
     <string name="qr_copy_description">複製到剪貼簿</string>
     <string name="qr_icon_description">圖示</string>
     <string name="qr_share_description">分享</string>
-    <string name="qr_wifi_title">連線至此 Wi-Fi 網路</string>
     <string name="qr_dpp_description">設定此裝置</string>
     <string name="qr_text">文字</string>
+    <string name="qr_wifi_title">連線至此 Wi-Fi 網路</string>
     <string name="title_activity_settings">設定</string>
     <string name="general_header">一般</string>
     <string name="photos_header">相片</string>
@@ -120,6 +120,7 @@
     <string name="error_do_not_disturb_mode_enabled">零打擾模式已啟用，請將其停用並重新開啟應用程式。</string>
     <string name="error_unknown_recoverable">發現可復原的未知錯誤，請向開發人員回報。</string>
     <string name="error_unknown_critical">發現未預期的未知錯誤，請向開發人員回報。</string>
+    <string name="error_no_cameras_available">未在設備上找到相機，無法啟動應用程式。</string>
     <string name="gesture_action_shutter">快門</string>
     <string name="gesture_action_zoom">縮放</string>
     <string name="gesture_action_volume">音量</string>

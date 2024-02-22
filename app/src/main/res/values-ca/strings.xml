@@ -37,9 +37,9 @@
     <string name="qr_copy_description">Copia al porta-retalls</string>
     <string name="qr_icon_description">Icona</string>
     <string name="qr_share_description">Comparteix</string>
-    <string name="qr_wifi_title">Connecta a aquesta xarxa Wi-Fi</string>
     <string name="qr_dpp_description">Configura aquest dispositiu</string>
     <string name="qr_text">Text</string>
+    <string name="qr_wifi_title">Connecta a aquesta xarxa Wi-Fi</string>
     <string name="title_activity_settings">Configuració</string>
     <string name="general_header">General</string>
     <string name="photos_header">Fotos</string>
@@ -120,6 +120,7 @@
     <string name="error_do_not_disturb_mode_enabled">El mode No Molestis està activat. Desactiveu-lo i torneu a obrir l\'aplicació.</string>
     <string name="error_unknown_recoverable">S\'ha trobat un error desconegut recuperable. Informeu als desenvolupadors.</string>
     <string name="error_unknown_critical">S\'ha trobat un error crític desconegut. Informeu als desenvolupadors.</string>
+    <string name="error_no_cameras_available">No s\'han trobat càmeres al dispositiu, no es pot iniciar l\'aplicació.</string>
     <string name="gesture_action_shutter">Obturador</string>
     <string name="gesture_action_zoom">Amplia</string>
     <string name="gesture_action_volume">Volum</string>

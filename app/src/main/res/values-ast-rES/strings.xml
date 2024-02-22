@@ -36,6 +36,7 @@
     <string name="qr_copy_description">Copiar nel cartafueyu</string>
     <string name="qr_icon_description">Iconu</string>
     <string name="qr_share_description">Compartir</string>
+    <string name="qr_no_app_available_for_action">Nun hai nenguna aplicación disponible pa remanar esta aición</string>
     <string name="qr_text">Testu</string>
     <string name="title_activity_settings">Configuración</string>
     <string name="general_header">Xeneral</string>
@@ -70,6 +71,7 @@
     <string name="location_permission_dialog_later">Dempués</string>
     <string name="location_permission_dialog_turn_on">Activar</string>
     <string name="error_camera_fatal_error">Atopóse un error fatal. Prueba a reaniciar el preséu.</string>
+    <string name="error_no_cameras_available">Nun s\'atopó nenguna cámara nel preséu y nun se pue aniciar l\'aplicación.</string>
     <string name="gesture_action_shutter">Obturador</string>
     <string name="gesture_action_zoom">Zoom</string>
     <string name="gesture_action_volume">Volume</string>

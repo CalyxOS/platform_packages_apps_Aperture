@@ -37,9 +37,9 @@
     <string name="qr_copy_description">Skopiuj do schowka</string>
     <string name="qr_icon_description">Ikona</string>
     <string name="qr_share_description">Udostępnij</string>
-    <string name="qr_wifi_title">Połącz z tą siecią Wi-Fi</string>
     <string name="qr_dpp_description">Skonfiguruj to urządzenie</string>
     <string name="qr_text">Tekst</string>
+    <string name="qr_wifi_title">Połącz z tą siecią Wi-Fi</string>
     <string name="title_activity_settings">Ustawienia</string>
     <string name="general_header">Ogólne</string>
     <string name="photos_header">Zdjęcia</string>
@@ -120,6 +120,7 @@
     <string name="error_do_not_disturb_mode_enabled">Tryb \"Nie przeszkadzać\" jest włączony. Wyłącz go i otwórz aplikację ponownie.</string>
     <string name="error_unknown_recoverable">Znaleziono nieznany błąd do odzyskania. Prosimy zgłosić go programistom.</string>
     <string name="error_unknown_critical">Znaleziono krytyczny, nieznany błąd. Prosimy zgłosić go programistom.</string>
+    <string name="error_no_cameras_available">Nie znaleziono żadnego aparatu w urządzeniu, dlatego nie można uruchomić aplikacji.</string>
     <string name="gesture_action_shutter">Migawka</string>
     <string name="gesture_action_zoom">Powiększenie</string>
     <string name="gesture_action_volume">Głośność</string>
