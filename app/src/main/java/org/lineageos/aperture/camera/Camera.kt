@@ -18,6 +18,7 @@ import org.lineageos.aperture.models.CameraMode
 import org.lineageos.aperture.models.ColorCorrectionAberrationMode
 import org.lineageos.aperture.models.DistortionCorrectionMode
 import org.lineageos.aperture.models.EdgeMode
+import org.lineageos.aperture.models.FlashMode
 import org.lineageos.aperture.models.FrameRate
 import org.lineageos.aperture.models.HotPixelMode
 import org.lineageos.aperture.models.NoiseReductionMode
@@ -25,6 +26,7 @@ import org.lineageos.aperture.models.ShadingMode
 import org.lineageos.aperture.models.VideoDynamicRange
 import org.lineageos.aperture.models.VideoQualityInfo
 import org.lineageos.aperture.models.VideoStabilizationMode
+import org.lineageos.aperture.viewmodels.CameraViewModel
 import kotlin.reflect.safeCast
 
 /**
@@ -33,7 +35,7 @@ import kotlin.reflect.safeCast
 @androidx.camera.camera2.interop.ExperimentalCamera2Interop
 @androidx.camera.core.ExperimentalLensFacing
 @androidx.camera.core.ExperimentalZeroShutterLag
-class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
+class Camera(cameraInfo: CameraInfo, model: CameraViewModel) {
     val cameraSelector = cameraInfo.cameraSelector
 
     private val camera2CameraInfo = Camera2CameraInfo.from(cameraInfo)
@@ -50,12 +52,12 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
     val cameraType = cameraFacing.cameraType
 
     val exposureCompensationRange = cameraInfo.exposureState.exposureCompensationRange
-    val hasFlashUnit = cameraInfo.hasFlashUnit()
+    private val hasFlashUnit = cameraInfo.hasFlashUnit()
 
     val isLogical = camera2CameraInfo.physicalCameraIds.size > 1
 
     val intrinsicZoomRatio = cameraInfo.intrinsicZoomRatio
-    val logicalZoomRatios = cameraManager.getLogicalZoomRatios(cameraId)
+    val logicalZoomRatios = model.getLogicalZoomRatios(cameraId)
 
     private val supportedVideoFrameRates = cameraInfo.supportedFrameRateRanges.mapNotNull {
         FrameRate.fromRange(it)
@@ -76,7 +78,7 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
             VideoQualityInfo(
                 it,
                 supportedVideoFrameRates.toMutableSet().apply {
-                    for ((frameRate, remove) in cameraManager.getAdditionalVideoFrameRates(
+                    for ((frameRate, remove) in model.getAdditionalVideoFrameRates(
                         cameraId, it
                     )) {
                         if (remove) {
@@ -94,7 +96,7 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
 
     val supportsVideoRecording = supportedVideoQualities.isNotEmpty()
 
-    val supportedExtensionModes = cameraManager.extensionsManager.getSupportedModes(cameraSelector)
+    val supportedExtensionModes = model.extensionsManager.getSupportedModes(cameraSelector)
 
     val supportedVideoStabilizationModes = mutableListOf(VideoStabilizationMode.OFF).apply {
         val availableVideoStabilizationModes = camera2CameraInfo.getCameraCharacteristic(
@@ -233,6 +235,24 @@ class Camera(cameraInfo: CameraInfo, cameraManager: CameraManager) {
             }
         }
     }.toSet()
+
+    /**
+     * The supported flash modes of this camera.
+     * Keep in mind that support also depends on the camera mode used.
+     */
+    val supportedFlashModes = mutableSetOf(
+        FlashMode.OFF,
+    ).apply {
+        if (hasFlashUnit) {
+            add(FlashMode.AUTO)
+            add(FlashMode.ON)
+            add(FlashMode.TORCH)
+        }
+
+        if (cameraFacing == CameraFacing.FRONT) {
+            add(FlashMode.SCREEN)
+        }
+    }
 
     override fun equals(other: Any?): Boolean {
         val camera = this::class.safeCast(other) ?: return false

@@ -18,18 +18,19 @@ var CameraController.flashMode: FlashMode
             ImageCapture.FLASH_MODE_AUTO -> FlashMode.AUTO
             ImageCapture.FLASH_MODE_ON -> FlashMode.ON
             ImageCapture.FLASH_MODE_OFF -> FlashMode.OFF
+            ImageCapture.FLASH_MODE_SCREEN -> FlashMode.SCREEN
             else -> throw Exception("Invalid flash mode")
         }
     }
     set(value) {
         enableTorch(value == FlashMode.TORCH)
 
-        // TODO: support FlashMode.RED_EYE
         imageCaptureFlashMode = when (value) {
             FlashMode.OFF -> ImageCapture.FLASH_MODE_OFF
             FlashMode.AUTO -> ImageCapture.FLASH_MODE_AUTO
             FlashMode.ON -> ImageCapture.FLASH_MODE_ON
             FlashMode.TORCH -> ImageCapture.FLASH_MODE_OFF
+            FlashMode.SCREEN -> ImageCapture.FLASH_MODE_SCREEN
         }
     }
 

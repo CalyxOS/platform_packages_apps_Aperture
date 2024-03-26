@@ -6,7 +6,6 @@
 package org.lineageos.aperture.ext
 
 import android.content.SharedPreferences
-import android.net.Uri
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.ImageCapture
 import androidx.camera.extensions.ExtensionMode
@@ -160,6 +159,7 @@ internal var SharedPreferences.photoFlashMode: FlashMode
         "auto" -> FlashMode.AUTO
         "on" -> FlashMode.ON
         "torch" -> FlashMode.TORCH
+        "screen" -> FlashMode.SCREEN
         // Default to auto
         else -> FlashMode.AUTO
     }
@@ -170,6 +170,7 @@ internal var SharedPreferences.photoFlashMode: FlashMode
                 FlashMode.AUTO -> "auto"
                 FlashMode.ON -> "on"
                 FlashMode.TORCH -> "torch"
+                FlashMode.SCREEN -> "screen"
             }
         )
     }
@@ -325,18 +326,6 @@ internal var SharedPreferences.leveler: Boolean
     get() = getBoolean(LEVELER_KEY, LEVELER_DEFAULT)
     set(value) = edit {
         putBoolean(LEVELER_KEY, value)
-    }
-
-// Last saved URI
-private const val LAST_SAVED_URI_KEY = "saved_uri"
-
-internal var SharedPreferences.lastSavedUri: Uri?
-    get() {
-        val raw = getString(LAST_SAVED_URI_KEY, null) ?: return null
-        return Uri.parse(raw)
-    }
-    set(value) = edit {
-        putString(LAST_SAVED_URI_KEY, value.toString())
     }
 
 // Video stabilization
