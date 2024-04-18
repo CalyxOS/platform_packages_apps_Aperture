@@ -18,7 +18,7 @@ apply {
 
 buildscript {
     repositories {
-        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.6/.m2")
+        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.7/.m2")
     }
 
     dependencies {
@@ -27,13 +27,13 @@ buildscript {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "org.lineageos.aperture"
 
     defaultConfig {
         applicationId = "com.android.camera2"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -122,6 +122,7 @@ configure<GenerateBpPluginExtension> {
                         !module.group.startsWith("androidx.media3") &&
                         module.name != "lifecycle-common"
             }
+
             module.group.startsWith("org.jetbrains") -> true
             module.group == "com.google.auto.value" -> true
             module.group == "com.google.errorprone" -> true

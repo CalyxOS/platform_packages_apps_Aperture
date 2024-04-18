@@ -124,7 +124,7 @@ class QrImageAnalyzer(private val activity: Activity, private val scope: Corouti
                 with(textClassification.actions[0]) {
                     bottomSheetDialogCardView.setOnClickListener {
                         try {
-                            actionIntent.send()
+                            actionIntent.sendWithBalAllowed()
                         } catch (e: PendingIntent.CanceledException) {
                             Toast.makeText(
                                 activity,
@@ -136,16 +136,13 @@ class QrImageAnalyzer(private val activity: Activity, private val scope: Corouti
                     bottomSheetDialogCardView.contentDescription = contentDescription
                     bottomSheetDialogData.movementMethod = null
                     bottomSheetDialogTitle.text = title
-                    scope.launch(Dispatchers.IO) {
-                        val drawable = icon.loadDrawable(activity)!!
-                        bottomSheetDialogIcon.setImageDrawable(drawable)
-                    }
+                    bottomSheetDialogIcon.setImageIcon(icon)
                 }
                 for (action in textClassification.actions.drop(1)) {
                     bottomSheetDialogActionsLayout.addView(inflateButton().apply {
                         setOnClickListener {
                             try {
-                                action.actionIntent.send()
+                                action.actionIntent.sendWithBalAllowed()
                             } catch (e: PendingIntent.CanceledException) {
                                 Toast.makeText(
                                     activity,
@@ -156,12 +153,14 @@ class QrImageAnalyzer(private val activity: Activity, private val scope: Corouti
                         }
                         contentDescription = action.contentDescription
                         this.text = action.title
-                        scope.launch(Dispatchers.IO) {
+                        withContext(Dispatchers.IO) {
                             val drawable = action.icon.loadDrawable(activity)!!
                             drawable.setBounds(0, 0, 15.px, 15.px)
-                            setCompoundDrawables(
-                                drawable, null, null, null
-                            )
+                            withContext(Dispatchers.Main) {
+                                setCompoundDrawables(
+                                    drawable, null, null, null
+                                )
+                            }
                         }
                     })
                 }
