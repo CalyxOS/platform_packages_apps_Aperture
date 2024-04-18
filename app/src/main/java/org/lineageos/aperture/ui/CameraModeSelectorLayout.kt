@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
+ * SPDX-FileCopyrightText: 2022-2024 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,11 +18,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import com.google.android.material.button.MaterialButton
 import org.lineageos.aperture.R
-import org.lineageos.aperture.camera.CameraViewModel
 import org.lineageos.aperture.ext.px
 import org.lineageos.aperture.models.CameraMode
 import org.lineageos.aperture.models.CameraState
 import org.lineageos.aperture.utils.TimeUtils
+import org.lineageos.aperture.viewmodels.CameraViewModel
 import kotlin.reflect.cast
 
 class CameraModeSelectorLayout @JvmOverloads constructor(
@@ -124,6 +124,7 @@ class CameraModeSelectorLayout @JvmOverloads constructor(
         val inSingleCaptureMode = cameraViewModel?.inSingleCaptureMode?.value ?: return
         val cameraState = cameraViewModel?.cameraState?.value ?: return
 
+        cameraModeHighlightButton.isInvisible = cameraState.isRecordingVideo || inSingleCaptureMode
         cameraToButton.forEach {
             it.value.isInvisible = cameraState.isRecordingVideo || inSingleCaptureMode
         }
