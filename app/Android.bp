@@ -19,6 +19,8 @@ android_app {
     sdk_version: "34",
     product_specific: true,
 
+    use_embedded_native_libs: true,
+
     aaptflags: [
         "--rename-manifest-package",
         "com.android.camera2",
@@ -44,6 +46,7 @@ android_app {
         "Aperture_androidx.camera_camera-lifecycle",
         "Aperture_androidx.camera_camera-video",
         "Aperture_androidx.camera_camera-view",
+        "Aperture_androidx.camera_camera-viewfinder",
         "Aperture_androidx.camera_camera-extensions",
         "Aperture_androidx.media3_media3-exoplayer",
         "Aperture_androidx.media3_media3-ui",

@@ -18,7 +18,7 @@ apply {
 
 buildscript {
     repositories {
-        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.7/.m2")
+        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.9/.m2")
     }
 
     dependencies {
@@ -84,7 +84,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     // CameraX core library using the camera2 implementation
-    val cameraxVersion = "1.4.0-alpha04"
+    val cameraxVersion = "1.4.0-beta01"
     // The following line is optional, as the core library is included indirectly by camera-camera2
     implementation("androidx.camera:camera-core:${cameraxVersion}")
     implementation("androidx.camera:camera-camera2:${cameraxVersion}")
@@ -94,6 +94,8 @@ dependencies {
     implementation("androidx.camera:camera-video:${cameraxVersion}")
     // If you want to additionally use the CameraX View class
     implementation("androidx.camera:camera-view:${cameraxVersion}")
+    // If you want to additionally use the CameraX Viewfinder class
+    implementation("androidx.camera:camera-viewfinder:1.4.0-alpha06")
     // If you want to additionally use the CameraX Extensions library
     implementation("androidx.camera:camera-extensions:${cameraxVersion}")
 

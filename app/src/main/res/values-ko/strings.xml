@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
+     SPDX-FileCopyrightText: 2022-2024 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
@@ -101,6 +101,7 @@
     <string name="noise_reduction_mode_fast">빠르게</string>
     <string name="noise_reduction_mode_high_quality">고품질</string>
     <string name="noise_reduction_mode_minimal">최소</string>
+    <string name="shading_mode_title">비네트 보정</string>
     <string name="shading_mode_default">기본값</string>
     <string name="shading_mode_off">끔</string>
     <string name="shading_mode_fast">빠름</string>
