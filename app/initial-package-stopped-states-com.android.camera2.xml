@@ -4,5 +4,5 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <config>
-    <initial-package-state package="org.lineageos.aperture" stopped="false"/>
+    <initial-package-state package="com.android.camera2" stopped="false"/>
 </config>
