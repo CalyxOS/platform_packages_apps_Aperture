@@ -1,11 +1,13 @@
 /*
- * SPDX-FileCopyrightText: 2022-2023 The LineageOS Project
+ * SPDX-FileCopyrightText: 2022-2024 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.aperture
 
+import android.hardware.input.InputManager
 import android.os.Bundle
+import android.view.KeyCharacterMap
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -23,11 +25,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import org.lineageos.aperture.ext.gestureActionToString
 import org.lineageos.aperture.ext.setOffset
+import org.lineageos.aperture.models.HardwareKey
 import org.lineageos.aperture.utils.CameraSoundsUtils
 import org.lineageos.aperture.utils.PermissionsUtils
 import kotlin.reflect.safeCast
@@ -193,6 +198,138 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
             // Photo capture mode
             photoCaptureMode.onPreferenceChangeListener = photoCaptureModePreferenceChangeListener
             enableZsl.isEnabled = photoCaptureMode.value == "minimize_latency"
+        }
+    }
+
+    class GesturesSettingsFragment : SettingsFragment(R.xml.gestures_preferences) {
+        // Preferences
+        private val singleButtonsPreferenceCategory by lazy {
+            findPreference<PreferenceCategory>("single_buttons")
+        }
+
+        // Input device listener
+        private val inputDeviceListener = object : InputManager.InputDeviceListener {
+            override fun onInputDeviceAdded(deviceId: Int) {
+                recheckKeys()
+            }
+
+            override fun onInputDeviceRemoved(deviceId: Int) {
+                recheckKeys()
+            }
+
+            override fun onInputDeviceChanged(deviceId: Int) {
+                recheckKeys()
+            }
+        }
+
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            super.onCreatePreferences(savedInstanceState, rootKey)
+
+            val context = requireContext()
+
+            for (hardwareKey in HardwareKey.entries) {
+                val actionPreference = ListPreference(context, null).apply {
+                    key = "${hardwareKey.sharedPreferencesKeyPrefix}_action"
+                    setTitle(hardwareKey.actionPreferenceTitleStringResId)
+                    setDialogTitle(hardwareKey.actionPreferenceTitleStringResId)
+                    when {
+                        hardwareKey.supportsDefault && hardwareKey.isTwoWayKey -> {
+                            setEntries(R.array.gesture_actions_entries)
+                            setEntryValues(R.array.gesture_actions_values)
+                        }
+                        hardwareKey.supportsDefault && !hardwareKey.isTwoWayKey -> {
+                            setEntries(R.array.gesture_actions_no_two_way_entries)
+                            setEntryValues(R.array.gesture_actions_no_two_way_values)
+                        }
+                        !hardwareKey.supportsDefault && hardwareKey.isTwoWayKey -> {
+                            setEntries(R.array.gesture_actions_no_two_way_entries)
+                            setEntryValues(R.array.gesture_actions_no_two_way_values)
+                        }
+                        else -> {
+                            setEntries(R.array.gesture_actions_no_default_no_two_way_entries)
+                            setEntryValues(R.array.gesture_actions_no_default_no_two_way_values)
+                        }
+                    }
+                    setDefaultValue(gestureActionToString(hardwareKey.defaultAction))
+                    isIconSpaceReserved = false
+                    summaryProvider = ListPreference.SimpleSummaryProvider.getInstance()
+                }
+
+                if (!hardwareKey.isTwoWayKey) {
+                    singleButtonsPreferenceCategory?.addPreference(actionPreference)
+                } else {
+                    val invertPreference = SwitchPreference(context, null).apply {
+                        key = "${hardwareKey.sharedPreferencesKeyPrefix}_invert"
+                        setTitle(hardwareKey.invertPreferenceTitleStringResId!!)
+                        setSummary(hardwareKey.invertPreferenceSummaryStringResId!!)
+                        setDefaultValue(false)
+                        isIconSpaceReserved = false
+                    }
+
+                    val keyCategory = PreferenceCategory(context, null).apply {
+                        key = hardwareKey.sharedPreferencesKeyPrefix
+                        setTitle(hardwareKey.preferenceCategoryTitleStringResId!!)
+                        isIconSpaceReserved = false
+                    }
+
+                    preferenceScreen.addPreference(keyCategory)
+
+                    keyCategory.addPreference(actionPreference)
+                    keyCategory.addPreference(invertPreference)
+                }
+            }
+
+            recheckKeys()
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            val inputManager = requireContext().getSystemService(InputManager::class.java)
+
+            recheckKeys()
+
+            inputManager.registerInputDeviceListener(inputDeviceListener, null)
+        }
+
+        override fun onDestroyView() {
+            val inputManager = requireContext().getSystemService(InputManager::class.java)
+
+            inputManager.unregisterInputDeviceListener(inputDeviceListener)
+
+            super.onDestroyView()
+        }
+
+        private fun recheckKeys() {
+            var singleKeysPresent = false
+
+            for (hardwareKey in HardwareKey.entries) {
+                val present = KeyCharacterMap.deviceHasKeys(
+                    mutableListOf(hardwareKey.firstKeycode).apply {
+                        hardwareKey.secondKeycode?.let {
+                            add(it)
+                        }
+                    }.toIntArray()
+                ).all { it }
+
+                if (hardwareKey.isTwoWayKey) {
+                    val keyCategory = findPreference<PreferenceCategory>(
+                        hardwareKey.sharedPreferencesKeyPrefix
+                    )
+
+                    keyCategory?.isVisible = present
+                } else {
+                    val actionPreference = findPreference<ListPreference>(
+                        "${hardwareKey.sharedPreferencesKeyPrefix}_action"
+                    )
+
+                    actionPreference?.isVisible = present
+
+                    singleKeysPresent = singleKeysPresent || present
+                }
+            }
+
+            singleButtonsPreferenceCategory?.isVisible = singleKeysPresent
         }
     }
 
