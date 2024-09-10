@@ -7,7 +7,6 @@ package org.lineageos.aperture.camera
 
 import androidx.camera.core.CameraInfo
 import androidx.camera.core.CameraSelector
-import org.lineageos.aperture.viewmodels.CameraViewModel
 
 /**
  * A logical camera's backing physical camera.
@@ -15,10 +14,8 @@ import org.lineageos.aperture.viewmodels.CameraViewModel
 @androidx.camera.camera2.interop.ExperimentalCamera2Interop
 @androidx.camera.core.ExperimentalLensFacing
 class PhysicalCamera(
-    cameraInfo: CameraInfo,
-    model: CameraViewModel,
-    logicalCamera: Camera,
-) : BaseCamera(cameraInfo, model) {
+    cameraInfo: CameraInfo
+) : BaseCamera(cameraInfo) {
     override val cameraSelector = CameraSelector.Builder()
         .setPhysicalCameraId(cameraId)
         .build()
