@@ -27,13 +27,13 @@ buildscript {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = 35
     namespace = "org.lineageos.aperture"
 
     defaultConfig {
         applicationId = "com.android.camera2"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -88,7 +88,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     // CameraX core library using the camera2 implementation
-    val cameraxVersion = "1.5.0-alpha01"
+    val cameraxVersion = "1.5.0-alpha03"
     // The following line is optional, as the core library is included indirectly by camera-camera2
     implementation("androidx.camera:camera-core:${cameraxVersion}")
     implementation("androidx.camera:camera-camera2:${cameraxVersion}")
@@ -99,7 +99,7 @@ dependencies {
     // If you want to additionally use the CameraX View class
     implementation("androidx.camera:camera-view:${cameraxVersion}")
     // If you want to additionally use the CameraX Viewfinder class
-    implementation("androidx.camera.viewfinder:viewfinder-core:1.4.0-alpha08")
+    implementation("androidx.camera.viewfinder:viewfinder-core:1.4.0-alpha09")
     // If you want to additionally use the CameraX Extensions library
     implementation("androidx.camera:camera-extensions:${cameraxVersion}")
 
@@ -124,13 +124,13 @@ configure<GenerateBpPluginExtension> {
     availableInAOSP.set { module: Module ->
         when {
             module.group.startsWith("androidx") -> {
-                // We provide our own androidx.{camera,media3} & lifecycle-common
+                // We provide our own androidx.{camera,media3}
                 !module.group.startsWith("androidx.camera") &&
-                        !module.group.startsWith("androidx.media3") &&
-                        module.name != "lifecycle-common"
+                        !module.group.startsWith("androidx.media3")
             }
 
             module.group.startsWith("org.jetbrains") -> true
+            module.group == "com.google.android.material" -> true
             module.group == "com.google.auto.value" -> true
             module.group == "com.google.errorprone" -> true
             module.group == "com.google.guava" -> true

@@ -16,7 +16,7 @@ android_app {
     resource_dirs: ["src/main/res"],
     manifest: "src/main/AndroidManifest.xml",
 
-    sdk_version: "34",
+    sdk_version: "35",
     product_specific: true,
 
     use_embedded_native_libs: true,
@@ -42,7 +42,7 @@ android_app {
         "androidx.exifinterface_exifinterface",
         "androidx.lifecycle_lifecycle-viewmodel-ktx",
         "androidx.preference_preference",
-        "Aperture_com.google.android.material_material",
+        "com.google.android.material_material",
         "Aperture_androidx.camera_camera-core",
         "Aperture_androidx.camera_camera-camera2",
         "Aperture_androidx.camera_camera-lifecycle",
@@ -63,7 +63,9 @@ android_app {
     ],
 
     optimize: {
+        optimize: true,
         proguard_flags_files: ["proguard-rules.pro"],
+        shrink_resources: true,
     },
 }
 

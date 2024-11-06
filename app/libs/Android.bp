@@ -7,8 +7,8 @@
 
 android_library_import {
     name: "Aperture_androidx.camera_camera-camera2-nodeps",
-    aars: ["androidx/camera/camera-camera2/1.5.0-alpha01/camera-camera2-1.5.0-alpha01.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/camera-camera2/1.5.0-alpha03/camera-camera2-1.5.0-alpha03.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -27,13 +27,13 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera_camera-camera2",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/camera-camera2/1.5.0-alpha01/AndroidManifest.xml",
+    manifest: "androidx/camera/camera-camera2/1.5.0-alpha03/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera_camera-camera2-nodeps",
         "Aperture_androidx.camera_camera-core",
@@ -49,21 +49,21 @@ android_library {
 
 android_library_import {
     name: "Aperture_androidx.camera_camera-core-nodeps",
-    aars: ["androidx/camera/camera-core/1.5.0-alpha01/camera-core-1.5.0-alpha01.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/camera-core/1.5.0-alpha03/camera-core-1.5.0-alpha03.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Aperture_androidx.lifecycle_lifecycle-common",
         "androidx.annotation_annotation",
         "androidx.annotation_annotation-experimental",
         "androidx.concurrent_concurrent-futures",
         "androidx.concurrent_concurrent-futures-ktx",
         "androidx.core_core",
         "androidx.exifinterface_exifinterface",
+        "androidx.lifecycle_lifecycle-common",
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.tracing_tracing",
         "auto_value_annotations",
@@ -76,22 +76,22 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera_camera-core",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/camera-core/1.5.0-alpha01/AndroidManifest.xml",
+    manifest: "androidx/camera/camera-core/1.5.0-alpha03/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera_camera-core-nodeps",
-        "Aperture_androidx.lifecycle_lifecycle-common",
         "androidx.annotation_annotation",
         "androidx.annotation_annotation-experimental",
         "androidx.concurrent_concurrent-futures",
         "androidx.concurrent_concurrent-futures-ktx",
         "androidx.core_core",
         "androidx.exifinterface_exifinterface",
+        "androidx.lifecycle_lifecycle-common",
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.tracing_tracing",
         "auto_value_annotations",
@@ -104,8 +104,8 @@ android_library {
 
 android_library_import {
     name: "Aperture_androidx.camera_camera-extensions-nodeps",
-    aars: ["androidx/camera/camera-extensions/1.5.0-alpha01/camera-extensions-1.5.0-alpha01.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/camera-extensions/1.5.0-alpha03/camera-extensions-1.5.0-alpha03.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -122,13 +122,13 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera_camera-extensions",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/camera-extensions/1.5.0-alpha01/AndroidManifest.xml",
+    manifest: "androidx/camera/camera-extensions/1.5.0-alpha03/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera_camera-extensions-nodeps",
         "Aperture_androidx.camera_camera-core",
@@ -142,8 +142,8 @@ android_library {
 
 android_library_import {
     name: "Aperture_androidx.camera_camera-lifecycle-nodeps",
-    aars: ["androidx/camera/camera-lifecycle/1.5.0-alpha01/camera-lifecycle-1.5.0-alpha01.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/camera-lifecycle/1.5.0-alpha03/camera-lifecycle-1.5.0-alpha03.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -151,10 +151,10 @@ android_library_import {
     ],
     static_libs: [
         "Aperture_androidx.camera_camera-core",
-        "Aperture_androidx.lifecycle_lifecycle-common",
         "androidx.concurrent_concurrent-futures",
         "androidx.concurrent_concurrent-futures-ktx",
         "androidx.core_core",
+        "androidx.lifecycle_lifecycle-common",
         "androidx.tracing_tracing-ktx",
         "auto_value_annotations",
         "guava",
@@ -164,20 +164,20 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera_camera-lifecycle",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/camera-lifecycle/1.5.0-alpha01/AndroidManifest.xml",
+    manifest: "androidx/camera/camera-lifecycle/1.5.0-alpha03/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera_camera-lifecycle-nodeps",
         "Aperture_androidx.camera_camera-core",
-        "Aperture_androidx.lifecycle_lifecycle-common",
         "androidx.concurrent_concurrent-futures",
         "androidx.concurrent_concurrent-futures-ktx",
         "androidx.core_core",
+        "androidx.lifecycle_lifecycle-common",
         "androidx.tracing_tracing-ktx",
         "auto_value_annotations",
         "guava",
@@ -188,8 +188,8 @@ android_library {
 
 android_library_import {
     name: "Aperture_androidx.camera_camera-video-nodeps",
-    aars: ["androidx/camera/camera-video/1.5.0-alpha01/camera-video-1.5.0-alpha01.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/camera-video/1.5.0-alpha03/camera-video-1.5.0-alpha03.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -206,13 +206,13 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera_camera-video",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/camera-video/1.5.0-alpha01/AndroidManifest.xml",
+    manifest: "androidx/camera/camera-video/1.5.0-alpha03/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera_camera-video-nodeps",
         "Aperture_androidx.camera_camera-core",
@@ -226,8 +226,8 @@ android_library {
 
 android_library_import {
     name: "Aperture_androidx.camera_camera-view-nodeps",
-    aars: ["androidx/camera/camera-view/1.5.0-alpha01/camera-view-1.5.0-alpha01.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/camera-view/1.5.0-alpha03/camera-view-1.5.0-alpha03.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -237,12 +237,12 @@ android_library_import {
         "Aperture_androidx.camera_camera-core",
         "Aperture_androidx.camera_camera-lifecycle",
         "Aperture_androidx.camera_camera-video",
-        "Aperture_androidx.lifecycle_lifecycle-common",
         "androidx.annotation_annotation",
         "androidx.annotation_annotation-experimental",
         "androidx.appcompat_appcompat",
         "androidx.concurrent_concurrent-futures",
         "androidx.core_core",
+        "androidx.lifecycle_lifecycle-common",
         "auto_value_annotations",
         "guava",
     ],
@@ -250,24 +250,24 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera_camera-view",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/camera-view/1.5.0-alpha01/AndroidManifest.xml",
+    manifest: "androidx/camera/camera-view/1.5.0-alpha03/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera_camera-view-nodeps",
         "Aperture_androidx.camera_camera-core",
         "Aperture_androidx.camera_camera-lifecycle",
         "Aperture_androidx.camera_camera-video",
-        "Aperture_androidx.lifecycle_lifecycle-common",
         "androidx.annotation_annotation",
         "androidx.annotation_annotation-experimental",
         "androidx.appcompat_appcompat",
         "androidx.concurrent_concurrent-futures",
         "androidx.core_core",
+        "androidx.lifecycle_lifecycle-common",
         "auto_value_annotations",
         "guava",
     ],
@@ -276,8 +276,8 @@ android_library {
 
 android_library_import {
     name: "Aperture_androidx.camera.viewfinder_viewfinder-core-nodeps",
-    aars: ["androidx/camera/viewfinder/viewfinder-core/1.4.0-alpha08/viewfinder-core-1.4.0-alpha08.aar"],
-    sdk_version: "34",
+    aars: ["androidx/camera/viewfinder/viewfinder-core/1.4.0-alpha09/viewfinder-core-1.4.0-alpha09.aar"],
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -300,13 +300,13 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.camera.viewfinder_viewfinder-core",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
     ],
-    manifest: "androidx/camera/viewfinder/viewfinder-core/1.4.0-alpha08/AndroidManifest.xml",
+    manifest: "androidx/camera/viewfinder/viewfinder-core/1.4.0-alpha09/AndroidManifest.xml",
     static_libs: [
         "Aperture_androidx.camera.viewfinder_viewfinder-core-nodeps",
         "androidx.annotation_annotation",
@@ -324,38 +324,10 @@ android_library {
     java_version: "1.7",
 }
 
-java_import {
-    name: "Aperture_androidx.lifecycle_lifecycle-common-nodeps",
-    jars: ["androidx/lifecycle/lifecycle-common/2.6.2/lifecycle-common-2.6.2.jar"],
-    sdk_version: "34",
-    min_sdk_version: "14",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-}
-
-java_library_static {
-    name: "Aperture_androidx.lifecycle_lifecycle-common",
-    sdk_version: "34",
-    min_sdk_version: "14",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    static_libs: [
-        "Aperture_androidx.lifecycle_lifecycle-common-nodeps",
-        "androidx.annotation_annotation",
-        "kotlin-stdlib",
-        "kotlinx-coroutines-android",
-    ],
-    java_version: "1.7",
-}
-
 android_library_import {
     name: "Aperture_androidx.media3_media3-common-nodeps",
     aars: ["androidx/media3/media3-common/1.1.1/media3-common-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -370,7 +342,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-common",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -389,7 +361,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-container-nodeps",
     aars: ["androidx/media3/media3-container/1.1.1/media3-container-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -403,7 +375,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-container",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -421,7 +393,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-database-nodeps",
     aars: ["androidx/media3/media3-database/1.1.1/media3-database-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -435,7 +407,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-database",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -453,7 +425,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-datasource-nodeps",
     aars: ["androidx/media3/media3-datasource/1.1.1/media3-datasource-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -468,7 +440,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-datasource",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -487,7 +459,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-decoder-nodeps",
     aars: ["androidx/media3/media3-decoder/1.1.1/media3-decoder-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -501,7 +473,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-decoder",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -519,7 +491,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-exoplayer-nodeps",
     aars: ["androidx/media3/media3-exoplayer/1.1.1/media3-exoplayer-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -539,7 +511,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-exoplayer",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -563,7 +535,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-extractor-nodeps",
     aars: ["androidx/media3/media3-extractor/1.1.1/media3-extractor-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -579,7 +551,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-extractor",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -599,7 +571,7 @@ android_library {
 android_library_import {
     name: "Aperture_androidx.media3_media3-ui-nodeps",
     aars: ["androidx/media3/media3-ui/1.1.1/media3-ui-1.1.1.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -615,7 +587,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_androidx.media3_media3-ui",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -632,70 +604,10 @@ android_library {
     java_version: "1.7",
 }
 
-android_library_import {
-    name: "Aperture_com.google.android.material_material-nodeps",
-    aars: ["com/google/android/material/material/1.9.0/material-1.9.0.aar"],
-    sdk_version: "34",
-    min_sdk_version: "14",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    static_libs: [
-        "androidx-constraintlayout_constraintlayout",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.coordinatorlayout_coordinatorlayout",
-        "androidx.core_core",
-        "androidx.drawerlayout_drawerlayout",
-        "androidx.dynamicanimation_dynamicanimation",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.recyclerview_recyclerview",
-        "androidx.transition_transition",
-        "androidx.vectordrawable_vectordrawable",
-        "androidx.viewpager2_viewpager2",
-        "error_prone_annotations",
-    ],
-}
-
-android_library {
-    name: "Aperture_com.google.android.material_material",
-    sdk_version: "34",
-    min_sdk_version: "14",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    manifest: "com/google/android/material/material/1.9.0/AndroidManifest.xml",
-    static_libs: [
-        "Aperture_com.google.android.material_material-nodeps",
-        "androidx-constraintlayout_constraintlayout",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.coordinatorlayout_coordinatorlayout",
-        "androidx.core_core",
-        "androidx.drawerlayout_drawerlayout",
-        "androidx.dynamicanimation_dynamicanimation",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.recyclerview_recyclerview",
-        "androidx.transition_transition",
-        "androidx.vectordrawable_vectordrawable",
-        "androidx.viewpager2_viewpager2",
-        "error_prone_annotations",
-    ],
-    java_version: "1.7",
-}
-
 java_import {
     name: "Aperture_com.google.zxing_core-nodeps",
     jars: ["com/google/zxing/core/3.5.3/core-3.5.3.jar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -705,7 +617,7 @@ java_import {
 
 java_library_static {
     name: "Aperture_com.google.zxing_core",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -720,7 +632,7 @@ java_library_static {
 java_import {
     name: "Aperture_com.squareup.okhttp3_okhttp-nodeps",
     jars: ["com/squareup/okhttp3/okhttp/4.11.0/okhttp-4.11.0.jar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -730,7 +642,7 @@ java_import {
 
 java_library_static {
     name: "Aperture_com.squareup.okhttp3_okhttp",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -747,7 +659,7 @@ java_library_static {
 
 java_library_static {
     name: "Aperture_com.squareup.okio_okio",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -762,7 +674,7 @@ java_library_static {
 java_import {
     name: "Aperture_com.squareup.okio_okio-jvm-nodeps",
     jars: ["com/squareup/okio/okio-jvm/3.3.0/okio-jvm-3.3.0.jar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -772,7 +684,7 @@ java_import {
 
 java_library_static {
     name: "Aperture_com.squareup.okio_okio-jvm",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -788,7 +700,7 @@ java_library_static {
 android_library_import {
     name: "Aperture_io.coil-kt_coil-nodeps",
     aars: ["io/coil-kt/coil/2.4.0/coil-2.4.0.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -802,7 +714,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_io.coil-kt_coil",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -820,7 +732,7 @@ android_library {
 android_library_import {
     name: "Aperture_io.coil-kt_coil-base-nodeps",
     aars: ["io/coil-kt/coil-base/2.4.0/coil-base-2.4.0.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -843,7 +755,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_io.coil-kt_coil-base",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -870,7 +782,7 @@ android_library {
 android_library_import {
     name: "Aperture_io.coil-kt_coil-video-nodeps",
     aars: ["io/coil-kt/coil-video/2.4.0/coil-video-2.4.0.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -885,7 +797,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_io.coil-kt_coil-video",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -904,7 +816,7 @@ android_library {
 android_library_import {
     name: "Aperture_io.github.zxing-cpp_android-nodeps",
     aars: ["io/github/zxing-cpp/android/2.2.0/android-2.2.0.aar"],
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
@@ -919,7 +831,7 @@ android_library_import {
 
 android_library {
     name: "Aperture_io.github.zxing-cpp_android",
-    sdk_version: "34",
+    sdk_version: "35",
     min_sdk_version: "14",
     apex_available: [
         "//apex_available:platform",
