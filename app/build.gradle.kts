@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022-2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2022-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,7 +18,7 @@ apply {
 
 buildscript {
     repositories {
-        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.16/.m2")
+        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.17/.m2")
     }
 
     dependencies {
@@ -115,12 +115,13 @@ dependencies {
     implementation("io.github.zxing-cpp:android:2.2.0")
 
     // Coil
-    implementation("io.coil-kt:coil:2.4.0")
-    implementation("io.coil-kt:coil-video:2.4.0")
+    implementation("io.coil-kt.coil3:coil:3.0.4")
+    implementation("io.coil-kt.coil3:coil-video:3.0.4")
 }
 
 configure<GenerateBpPluginExtension> {
     targetSdk.set(android.defaultConfig.targetSdk!!)
+    minSdk.set(android.defaultConfig.minSdk!!)
     availableInAOSP.set { module: Module ->
         when {
             module.group.startsWith("androidx") -> {
