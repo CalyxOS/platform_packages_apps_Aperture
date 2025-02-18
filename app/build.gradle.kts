@@ -62,7 +62,7 @@ android {
 
 dependencies {
     // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.0"))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.23"))
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.activity:activity-ktx:1.9.2")
@@ -74,7 +74,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     // CameraX core library using the camera2 implementation
-    val cameraxVersion = "1.5.0-alpha04"
+    val cameraxVersion = "1.5.0-alpha05"
     // The following line is optional, as the core library is included indirectly by camera-camera2
     implementation("androidx.camera:camera-core:${cameraxVersion}")
     implementation("androidx.camera:camera-camera2:${cameraxVersion}")
@@ -85,7 +85,7 @@ dependencies {
     // If you want to additionally use the CameraX View class
     implementation("androidx.camera:camera-view:${cameraxVersion}")
     // If you want to additionally use the CameraX Viewfinder class
-    implementation("androidx.camera.viewfinder:viewfinder-core:1.4.0-alpha09")
+    implementation("androidx.camera.viewfinder:viewfinder-core:1.4.0-alpha12")
     // If you want to additionally use the CameraX Extensions library
     implementation("androidx.camera:camera-extensions:${cameraxVersion}")
 
@@ -98,7 +98,7 @@ dependencies {
 
     // ZXing
     implementation("com.google.zxing:core:3.5.3")
-    implementation("io.github.zxing-cpp:android:2.2.0")
+    implementation("io.github.zxing-cpp:android:2.3.0")
 
     // Coil
     implementation("io.coil-kt.coil3:coil:3.0.4")
