@@ -16,7 +16,6 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         maven("https://raw.githubusercontent.com/lineage-next/camerax-aperture/f325416f8533fb2ff540259ea955c541460ea785/.m2")
-        maven("https://raw.githubusercontent.com/lineage-next/zxingcpp-aperture/5c134c0daf39f62b930870ecb34978480087eda9/.m2")
         google()
         mavenCentral()
     }
