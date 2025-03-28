@@ -11,7 +11,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.core.view.doOnLayout
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -26,7 +25,6 @@ import org.lineageos.aperture.utils.TimeUtils
 import org.lineageos.aperture.viewmodels.CameraViewModel
 import kotlin.reflect.cast
 
-@ExperimentalCamera2Interop
 class CameraModeSelectorLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
@@ -108,7 +106,7 @@ class CameraModeSelectorLayout @JvmOverloads constructor(
     init {
         inflate(context, R.layout.camera_mode_selector_layout, this)
 
-        for (cameraMode in CameraMode.values()) {
+        for (cameraMode in CameraMode.entries) {
             cameraToButton[cameraMode] = MaterialButton::class.cast(
                 layoutInflater.inflate(
                     R.layout.camera_mode_button, this, false

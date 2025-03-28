@@ -1,9 +1,11 @@
 /*
- * SPDX-FileCopyrightText: 2023 The LineageOS Project
+ * SPDX-FileCopyrightText: 2023-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.aperture.models
+
+import org.lineageos.aperture.camera.Camera
 
 /**
  * [Camera] type.

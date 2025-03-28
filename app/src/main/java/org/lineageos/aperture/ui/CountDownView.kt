@@ -16,20 +16,18 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.IntRange
-import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import org.lineageos.aperture.R
-import org.lineageos.aperture.ext.*
+import org.lineageos.aperture.ext.smoothRotate
 import org.lineageos.aperture.models.Rotation
 import org.lineageos.aperture.viewmodels.CameraViewModel
 
 /**
  * This class manages the looks of the countdown.
  */
-@ExperimentalCamera2Interop
 class CountDownView(context: Context, attrs: AttributeSet?) : FrameLayout(
     context, attrs
 ) {

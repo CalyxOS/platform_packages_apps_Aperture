@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023-2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2023-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import org.lineageos.aperture.camera.Camera
-import org.lineageos.aperture.ext.*
+import org.lineageos.aperture.ext.applicationContext
 import org.lineageos.aperture.models.CameraFacing
 import org.lineageos.aperture.models.CameraMode
 import org.lineageos.aperture.models.CameraState
@@ -40,20 +40,19 @@ import java.util.concurrent.Executors
  * [ViewModel] representing a camera session. This data is used to receive
  * live data regarding the setting currently enabled.
  */
-@androidx.camera.camera2.interop.ExperimentalCamera2Interop
 class CameraViewModel(application: Application) : AndroidViewModel(application) {
     // Base
 
     /**
      * CameraX's [ProcessCameraProvider].
      */
-    private val cameraProvider = ProcessCameraProvider.getInstance(context).get()
+    private val cameraProvider = ProcessCameraProvider.getInstance(applicationContext).get()
 
     /**
      * CameraX's [ExtensionsManager].
      */
     val extensionsManager: ExtensionsManager =
-        ExtensionsManager.getInstanceAsync(context, cameraProvider).get()
+        ExtensionsManager.getInstanceAsync(applicationContext, cameraProvider).get()
 
     /**
      * [ExecutorService] for camera related operations.
@@ -63,7 +62,7 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
     /**
      * Overlay configuration.
      */
-    val overlayConfiguration = OverlayConfiguration(context)
+    val overlayConfiguration = OverlayConfiguration(applicationContext)
 
     /**
      * The available [Camera]s.
@@ -186,7 +185,7 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
     /**
      * Captured media [Uri]s
      */
-    val capturedMedia = MediaRepository.capturedMedia(context).flowOn(
+    val capturedMedia = MediaRepository.capturedMedia(applicationContext).flowOn(
         Dispatchers.IO
     ).stateIn(
         viewModelScope,
@@ -259,6 +258,10 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
      * Video recording duration.
      */
     val videoRecordingDuration = MutableLiveData<Long>()
+
+    override fun onCleared() {
+        cameraExecutor.shutdown()
+    }
 
     fun getAdditionalVideoFrameRates(cameraId: String, quality: Quality) =
         overlayConfiguration.additionalVideoConfigurations[cameraId]?.get(quality) ?: setOf()
@@ -342,10 +345,6 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun videoRecordingAvailable() = availableCamerasSupportingVideoRecording.isNotEmpty()
-
-    fun shutdown() {
-        cameraExecutor.shutdown()
-    }
 
     private fun prepareDeviceCamerasList(cameraFacing: CameraFacing): List<Camera> {
         val facingCameras = internalCameras.filter {

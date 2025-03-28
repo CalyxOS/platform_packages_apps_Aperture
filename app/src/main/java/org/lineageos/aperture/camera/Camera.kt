@@ -8,9 +8,14 @@ package org.lineageos.aperture.camera
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraMetadata
 import android.os.Build
+import android.util.Range
+import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.core.CameraInfo
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ExperimentalZeroShutterLag
 import androidx.camera.video.Recorder
-import org.lineageos.aperture.ext.*
+import androidx.lifecycle.LiveData
+import org.lineageos.aperture.ext.getSupportedModes
 import org.lineageos.aperture.models.CameraFacing
 import org.lineageos.aperture.models.CameraMode
 import org.lineageos.aperture.models.ColorCorrectionAberrationMode
@@ -29,13 +34,11 @@ import org.lineageos.aperture.viewmodels.CameraViewModel
 /**
  * Class representing a device camera
  */
-@androidx.camera.camera2.interop.ExperimentalCamera2Interop
-@androidx.camera.core.ExperimentalLensFacing
-@androidx.camera.core.ExperimentalZeroShutterLag
+@androidx.annotation.OptIn(ExperimentalCamera2Interop::class, ExperimentalZeroShutterLag::class)
 class Camera(cameraInfo: CameraInfo, model: CameraViewModel) : BaseCamera(cameraInfo) {
-    override val cameraSelector = cameraInfo.cameraSelector
+    override val cameraSelector: CameraSelector = cameraInfo.cameraSelector
 
-    val exposureCompensationRange = cameraInfo.exposureState.exposureCompensationRange
+    val exposureCompensationRange: Range<Int> = cameraInfo.exposureState.exposureCompensationRange
     private val hasFlashUnit = cameraInfo.hasFlashUnit()
 
     private val physicalCameras = cameraInfo.physicalCameraInfos.map {
@@ -109,7 +112,7 @@ class Camera(cameraInfo: CameraInfo, model: CameraViewModel) : BaseCamera(camera
 
     val supportsZsl = cameraInfo.isZslSupported
 
-    val cameraState = cameraInfo.cameraState
+    val cameraState: LiveData<androidx.camera.core.CameraState> = cameraInfo.cameraState
 
     val supportedEdgeModes = mutableSetOf<EdgeMode>().apply {
         val availableEdgeModes = camera2CameraInfo.getCameraCharacteristic(

@@ -4,24 +4,24 @@
  */
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    compileSdk = 34
     namespace = "com.google.android.apps.googlecamera.fishfood"
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.google.android.apps.googlecamera.fishfood"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             // Enables code shrinking, obfuscation, and optimization.
             isMinifyEnabled = true
 
@@ -39,11 +39,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
