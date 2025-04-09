@@ -7,14 +7,14 @@ import org.lineageos.generatebp.GenerateBpPluginExtension
 import org.lineageos.generatebp.models.Module
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("org.lineageos.generatebp")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.lineageos.generatebp)
 }
 
 android {
-    compileSdk = 35
     namespace = "org.lineageos.aperture"
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.android.camera2"
@@ -25,7 +25,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             // Enables code shrinking, obfuscation, and optimization.
             isMinifyEnabled = true
 
@@ -40,19 +40,20 @@ android {
                 )
             )
         }
-        getByName("debug") {
+
+        debug {
             // Append .dev to package name so we won't conflict with AOSP build.
             applicationIdSuffix = ".dev"
         }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     lint {
@@ -61,48 +62,32 @@ android {
 }
 
 dependencies {
-    // Align versions of all Kotlin components
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.23"))
-
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.activity:activity-ktx:1.9.2")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.exifinterface:exifinterface:1.3.7")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
-    implementation("androidx.preference:preference:1.2.1")
-    implementation("com.google.android.material:material:1.9.0")
-
-    // CameraX core library using the camera2 implementation
-    val cameraxVersion = "1.5.0-alpha05"
-    // The following line is optional, as the core library is included indirectly by camera-camera2
-    implementation("androidx.camera:camera-core:${cameraxVersion}")
-    implementation("androidx.camera:camera-camera2:${cameraxVersion}")
-    // If you want to additionally use the CameraX Lifecycle library
-    implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
-    // If you want to additionally use the CameraX VideoCapture library
-    implementation("androidx.camera:camera-video:${cameraxVersion}")
-    // If you want to additionally use the CameraX View class
-    implementation("androidx.camera:camera-view:${cameraxVersion}")
-    // If you want to additionally use the CameraX Viewfinder class
-    implementation("androidx.camera.viewfinder:viewfinder-core:1.4.0-alpha12")
-    // If you want to additionally use the CameraX Extensions library
-    implementation("androidx.camera:camera-extensions:${cameraxVersion}")
-
-    // Media3
-    val media3Version = "1.5.0"
-    // For media playback using ExoPlayer
-    implementation("androidx.media3:media3-exoplayer:$media3Version")
-    // For building media playback UIs
-    implementation("androidx.media3:media3-ui:$media3Version")
-
-    // ZXing
-    implementation("com.google.zxing:core:3.5.3")
-    implementation("io.github.zxing-cpp:android:2.3.0")
-
-    // Coil
-    implementation("io.coil-kt.coil3:coil:3.0.4")
-    implementation("io.coil-kt.coil3:coil-video:3.0.4")
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.video)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.viewfinder.core)
+    implementation(libs.androidx.camera.extensions)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.exifinterface)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.preference)
+    implementation(libs.material)
+    implementation(libs.coil)
+    implementation(libs.coil.video)
+    implementation(libs.kotlinx.coroutines.guava)  {
+        // Exclude compile time dependencies
+        exclude("com.google.j2objc", "j2objc-annotations")
+        exclude("org.checkerframework", "checker-qual")
+    }
+    implementation(libs.zxing.core)
+    implementation(libs.zxing.cpp.android)
 }
 
 configure<GenerateBpPluginExtension> {
@@ -119,6 +104,7 @@ configure<GenerateBpPluginExtension> {
             module.group.startsWith("org.jetbrains") -> true
             module.group == "com.google.android.material" -> true
             module.group == "com.google.auto.value" -> true
+            module.group == "com.google.code.findbugs" -> true
             module.group == "com.google.errorprone" -> true
             module.group == "com.google.guava" -> true
             module.group == "junit" -> true

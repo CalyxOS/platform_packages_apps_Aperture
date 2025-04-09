@@ -18,13 +18,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import org.lineageos.aperture.R
 import org.lineageos.aperture.camera.Camera
-import org.lineageos.aperture.ext.*
+import org.lineageos.aperture.ext.px
+import org.lineageos.aperture.ext.smoothRotate
 import org.lineageos.aperture.models.CameraState
 import org.lineageos.aperture.models.Rotation
 import org.lineageos.aperture.viewmodels.CameraViewModel
 import java.util.Locale
 
-@androidx.camera.camera2.interop.ExperimentalCamera2Interop
 class LensSelectorLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayoutCompat(context, attrs, defStyleAttr) {

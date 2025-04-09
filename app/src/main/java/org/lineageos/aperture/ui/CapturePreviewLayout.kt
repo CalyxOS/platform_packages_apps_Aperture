@@ -12,7 +12,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -21,7 +20,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import org.lineageos.aperture.R
-import org.lineageos.aperture.ext.*
+import org.lineageos.aperture.ext.smoothRotate
 import org.lineageos.aperture.models.MediaType
 import org.lineageos.aperture.models.Rotation
 import org.lineageos.aperture.utils.ExifUtils
@@ -31,7 +30,6 @@ import java.io.InputStream
 /**
  * Image/video preview fragment
  */
-@ExperimentalCamera2Interop
 class CapturePreviewLayout(context: Context, attrs: AttributeSet?) : ConstraintLayout(
     context, attrs
 ) {
