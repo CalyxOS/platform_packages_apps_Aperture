@@ -60,13 +60,10 @@ import androidx.camera.extensions.ExtensionMode
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import androidx.camera.video.VideoRecordEvent
-import androidx.camera.video.isAudioSourceConfigured
-import androidx.camera.video.muted
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
 import androidx.camera.view.ScreenFlashView
-import androidx.camera.view.onPinchToZoom
 import androidx.camera.view.video.AudioConfig
 import androidx.camera.viewfinder.core.ZoomGestureDetector
 import androidx.cardview.widget.CardView
@@ -894,10 +891,10 @@ open class CameraActivity : AppCompatActivity(R.layout.activity_camera) {
             updateSecondaryTopBarButtons()
 
             // Update secondary bottom bar buttons
-            secondaryBottomBarLayout.isVisible = cameraMode != CameraMode.QR
+            secondaryBottomBarLayout.isInvisible = cameraMode == CameraMode.QR
 
             // Update primary bar buttons
-            primaryBarLayout.isVisible = cameraMode != CameraMode.QR
+            primaryBarLayout.isInvisible = cameraMode == CameraMode.QR
 
             // Update Google Lens button
             googleLensButton.isVisible = cameraMode == CameraMode.QR && isGoogleLensAvailable
@@ -2099,7 +2096,7 @@ open class CameraActivity : AppCompatActivity(R.layout.activity_camera) {
         } else {
             AudioConfig.AUDIO_DISABLED
         }
-        videoRecording?.muted = !microphoneMode
+        videoRecording?.mute(!microphoneMode)
 
         videoMicMode = microphoneMode
 
