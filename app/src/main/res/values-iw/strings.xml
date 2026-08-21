@@ -107,7 +107,7 @@
     <string name="disable_jpeg_with_raw_summary">השבתת צילום JPEG כאשר צילום RAW מופעל</string>
     <string name="photo_ffc_mirror_title">היפוך תמונת מצלמה קדמית</string>
     <string name="photo_ffc_mirror_summary">שמירת תמונות מהמצלמה הקדמית כפי שהן מופיעות בתצוגה המקדימה</string>
-    <string name="video_stabilization_title">הפעלת ייצוב ווידאו</string>
+    <string name="video_stabilization_title">הפעלת ייצוב וידאו</string>
     <string name="video_stabilization_summary">כאשר זמין, יש להפעיל ייצוב וידאו להפחתת רעידות ההתקן במהלך ההקלטה</string>
     <string name="video_mirror_mode_title">הפעלת שיקוף וידאו</string>
     <string name="processing_title">מעבד</string>
@@ -152,7 +152,7 @@
     <string name="shortcut_selfie">צילום סלפי</string>
     <string name="shortcut_video">צילום וידאו</string>
     <string name="shortcut_qr">סריקת ברקוד</string>
-    <string name="location_permission_dialog_title">הוספת מיקום לתמונות ולוידאו</string>
+    <string name="location_permission_dialog_title">הוספת מיקום לתמונות ולווידאו</string>
     <string name="location_permission_dialog_description">יצירת מפת זיכרונות באמצעות הכללת נתוני מיקום בכל צילום.</string>
     <string name="location_permission_dialog_later">אחר כך</string>
     <string name="location_permission_dialog_turn_on">הפעלה</string>
@@ -163,8 +163,8 @@
     <string name="error_camera_disabled">המצלמה מושבתת. ייתכן שהדבר נגרם עקב מדיניות ההתקן.</string>
     <string name="error_camera_fatal_error">אירעה שגיאה חמורה. יש לנסות להפעיל את ההתקן מחדש.</string>
     <string name="error_do_not_disturb_mode_enabled">מצב \"נא לא להפריע\" פעיל. יש להשביתו ולפתוח את היישום מחדש.</string>
-    <string name="error_unknown_recoverable">נמצאה שגיאה לא ידועה הניתנת לשחזור. נא לדווח על כך למפתחים.</string>
-    <string name="error_unknown_critical">נמצאה שגיאה לא ידועה חמורה. נא לדווח על כך למפתחים.</string>
+    <string name="error_unknown_recoverable">התרחשה שגיאה לא ידועה, אך המערכת התאוששה. נא לדווח למפתחים.</string>
+    <string name="error_unknown_critical">נמצאה שגיאה קריטית שאינה ידועה. נא לדווח עליה למפתחים.</string>
     <string name="error_no_cameras_available">לא נמצאו מצלמות בהתקן, לא ניתן להפעיל את היישום.</string>
     <string name="gesture_action_shutter">צמצם</string>
     <string name="gesture_action_focus">פוקוס</string>
@@ -172,8 +172,7 @@
     <string name="gesture_action_zoom">זום</string>
     <string name="gesture_action_default">ברירת המחדל של אנדרואיד</string>
     <string name="gesture_action_nothing">כלום</string>
-    <string name="thermal_status_moderate">האטה תרמית מתונה. יש ודא שההתקן אינו חשוף לאור שמש ישירה.
-</string>
+    <string name="thermal_status_moderate">האטה תרמית מתונה. יש לוודא שההתקן אינו חשוף לאור שמש ישיר.</string>
     <string name="thermal_status_severe">האטה תרמית חמורה. מומלץ לאפשר להתקן להתקרר מעט.</string>
     <string name="thermal_status_critical">האטה תרמית קריטית. ייתכן שהיישום ייסגר בקרוב.</string>
     <string name="thermal_status_emergency">האטת חירום תרמית. היישום ייסגר כעת.</string>
